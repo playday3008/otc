@@ -7,9 +7,6 @@ Hello. This dll loads the onetap crack v2 segment into cs go. You can find the l
 Known issues:
 TriggerBot and Backtract in legit cause crashes.
 
-Configs for cheat: https://yadi.sk/d/KZNcRdMSheLTfw
-Last build: https://github.com/0x000cb/otc/releases/download/BETA/OTC.dll
-
 -----------------------------------------------------
 
 [RU]
@@ -19,8 +16,10 @@ Last build: https://github.com/0x000cb/otc/releases/download/BETA/OTC.dll
 Известные проблемы:
 Триггербот и бэктрек в легите вызывает краши.
 
-Конфиги для чита: https://yadi.sk/d/KZNcRdMSheLTfw
-Последний билд: https://github.com/0x000cb/otc/releases/download/BETA/OTC.dll
+-----------------------------------------------------
+
+Last build/Последний билд: https://github.com/0x000cb/otc/releases/download/BETA/OTC.dll
+Configs/Конфиги: https://yadi.sk/d/KZNcRdMSheLTfw
 
 -----------------------------------------------------
 
