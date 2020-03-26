@@ -18,7 +18,7 @@ Known issues:
 
 -----------------------------------------------------
 
-- Last build/Последний билд: https://github.com/0x000cb/otc/releases/download/BETA/OTC.dll
+- Last build/Последний билд: https://github.com/0x000cb/otc/releases/download/BETA-2/OTC.dll
 - Configs/Конфиги: https://yadi.sk/d/KZNcRdMSheLTfw
 
 -----------------------------------------------------
