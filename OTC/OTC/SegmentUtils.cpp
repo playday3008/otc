@@ -13,12 +13,12 @@ void SegmentUtils::CreateInfoTable (DWORD pointer, const char* nick) {
 
     //Base addresses of game modules for stable operation of the onetap.
 
-    for (const auto& library : libraries) info.emplace_back (reinterpret_cast<DWORD> (Utils::GetModule(library)));
+    for (const auto& library : m_libraries) info.emplace_back (reinterpret_cast<DWORD> (Utils::GetModule(library)));
 
     //Offsets are needed so that OneTap internal functions can find functions from outside. (For example, the render of the menu depends on the same offset)
     //p.s Index 1 - client_panorama base address.
 
-    for (const auto& offset : offsets) info.emplace_back (info.at(1) + offset);
+    for (const auto& offset : m_offsets) info.emplace_back (info.at(1) + offset);
 
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     // And so, consider everything in order. Here we move the finished table to the allocated segment memory.
@@ -49,7 +49,7 @@ void SegmentUtils::CreateInfoTable (DWORD pointer, const char* nick) {
 
 void SegmentUtils::UpdateNetVars (DWORD pointer) {
     //Netvars are offsets to parent variables in valve sdk. (In this example, we only fix m_isScope)
-    for (const auto& netvar : netvars) {
+    for (const auto& netvar : m_netvars) {
         *reinterpret_cast<DWORD*> (pointer + netvar.rva) = netvar.new_value;
     }
 }
@@ -68,6 +68,6 @@ void SegmentUtils::CreateHook (DWORD pointer) {
     // In order not to patch a binary file every time, creating a hook is the simplest solution. 
     // (And it gets even easier with HookLib. More details: https://www.github.com/HoShiMin/HookLib)
     //
-       SetHook (reinterpret_cast<PVOID> (pointer + SEGMENT_FUNCTION_HOOK_RVA), &CustomFunctionHook, reinterpret_cast<PVOID*> (&OriginalFunctionHookCaller));
+       SetHook (reinterpret_cast<PVOID> (pointer + SEGMENT_FUNCTION_HOOK_RVA), &CustomFunctionHook, reinterpret_cast<PVOID*> (&g_OriginalFunctionHookCaller));
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 }

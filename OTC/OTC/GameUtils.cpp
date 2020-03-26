@@ -6,15 +6,15 @@ void GameUtils::ExecuteAtConsole (const char* cmd) {
 	//CAUTION:
 	//May throw exceptions in the debugger.
 
-	GameUtils::ExecuteInterface (this, cmd);
+	ExecuteInterface (this, cmd);
 }
 
 void GameUtils::PrintToConsole (const char* message, int preNewLineCount, int postNewLineCount) {
 	PrintNewLineToConsole (preNewLineCount);
-	GameUtils::PrintInterface (message);
+	PrintInterface (message);
 	PrintNewLineToConsole (postNewLineCount);
 }
 
 void GameUtils::PrintNewLineToConsole (int newLineCount) {
-	for (int lineIterator = 0; lineIterator < newLineCount; lineIterator++) GameUtils::PrintInterface ("\n");
+	for (int lineIterator = 0; lineIterator < newLineCount; lineIterator++) PrintInterface ("\n");
 }

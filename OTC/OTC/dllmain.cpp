@@ -36,14 +36,17 @@
 
 BOOL APIENTRY DllMain(HMODULE hModule, DWORD callReason, LPVOID lpReserved) {
 
+    //ALL DOCS INSIDE FUNCTIONS.
+
     if (callReason == DLL_PROCESS_ATTACH) {
 
         PatchManager patchManager;
         SegmentUtils segmentUtils;
         GameUtils gameUtils;
 
+        //We nicely display a load message.
         gameUtils.ExecuteAtConsole ("log_color General 00FFFFFF");
-        gameUtils.ExecuteAtConsole ("developer 1");
+        gameUtils.ExecuteAtConsole ("developer 1"); // (To disable the annoying output from the side, use developer 0. But I do not recommend it as it often helps to catch bugs)
         gameUtils.ExecuteAtConsole ("clear");
 
         ExecutionStatus allocationResult = patchManager.ExtractToMemory ();
@@ -57,7 +60,7 @@ BOOL APIENTRY DllMain(HMODULE hModule, DWORD callReason, LPVOID lpReserved) {
         if (reconstructResult.isCause) return TRUE;
 
         gameUtils.PrintToConsole ("Performing routine work with the segment...");
-        segmentUtils.CreateInfoTable (allocationResult.value, "yougame.biz | infocheats.net"); //Maximum nickname length: 32 characters.
+        segmentUtils.CreateInfoTable (allocationResult.value, "yougame.biz | infocheats.net");
         segmentUtils.UpdateNetVars (allocationResult.value);
         segmentUtils.CreateHook (allocationResult.value);
         gameUtils.PrintToConsole ("Complete.");

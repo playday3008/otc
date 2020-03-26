@@ -37,6 +37,9 @@
     <Filter Include="Файлы заголовков\patch">
       <UniqueIdentifier>{6d52b353-fd61-479e-8cf8-e2326f9007c9}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Файлы ресурсов\libs">
+      <UniqueIdentifier>{6fa99ac3-020c-4543-9454-82c16b85dd90}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -64,7 +67,7 @@
       <Filter>Файлы заголовков\utils</Filter>
     </ClInclude>
     <ClInclude Include="HookLib.h">
-      <Filter>Файлы ресурсов</Filter>
+      <Filter>Файлы ресурсов\libs</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -94,11 +97,11 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <Library Include="Zydis.lib">
-      <Filter>Файлы ресурсов</Filter>
-    </Library>
     <Library Include="HookLib.lib">
-      <Filter>Файлы ресурсов</Filter>
+      <Filter>Файлы ресурсов\libs</Filter>
+    </Library>
+    <Library Include="Zydis.lib">
+      <Filter>Файлы ресурсов\libs</Filter>
     </Library>
   </ItemGroup>
 </Project>

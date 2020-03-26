@@ -4,12 +4,16 @@
 #include "Segment.h"
 
 //Simple DllMain function. (Used for call OEP)
-typedef int (__stdcall *DUMP_HEADER_OEP_FUNCTION) (int, int, int);
+//Docs: https://docs.microsoft.com/en-us/windows/win32/dlls/dllmain
+typedef int (__stdcall *SEGMENT_HEADER_OEP_FUNCTION) (HMODULE hModule, DWORD callReason, LPVOID lpReserved);
 
 //About this: https://docs.microsoft.com/en-us/windows/win32/debug/pe-format
 #define SEGMENT_ALLOCATION_SIZE 0x968940
 #define SEGMENT_SIZE 0x186A00
+
+//We use the previous value to correctly patch the relocations. (About relocations and how patch: PatchManager.cpp)
 #define SEGMENT_PREVIOUSLY_RUNTIME 0x3D600000
+//Offset to DLLMain function. (Need to know the place where need call DllMain)
 #define SEGMENT_OEP_RVA 0x4738C
 
 enum ImportType {
@@ -47,9 +51,9 @@ public:
     }
 
     //Need for segment can call the necessary functions from libraries. Storage model: Module -> ImportInfo [Function, offsets ^ n].
-    std::map<const char*, std::vector<ImportInfo>> m_Imports;
+    std::map<const char*, std::vector<ImportInfo>> m_imports;
     //Need for reconstruct own variables/methods call.
-    std::vector<DWORD> m_Relocations;
+    std::vector<DWORD> m_relocations;
 
     //Simple (no), functions for fill vectors.
 
