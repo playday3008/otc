@@ -14,7 +14,7 @@ ExecutionStatus PatchManager::ExtractToMemory () {
 ExecutionStatus PatchManager::ReconstructHotPoints (DWORD pointer) {
 
     //Iterate relocations in vector.
-    for (const auto& relocation : m_SegmentHeader.m_Relocations) {
+    for (const auto& relocation : m_SegmentHeader.m_relocations) {
         //Subtract value with old base address in dump from memory.
         *reinterpret_cast<DWORD*> (pointer + relocation) -= SEGMENT_PREVIOUSLY_RUNTIME;
         //Add new base address in dump to offset.
@@ -22,7 +22,7 @@ ExecutionStatus PatchManager::ReconstructHotPoints (DWORD pointer) {
     }
 
     //Iterate value in imports map.
-    for (const auto& importsMap : m_SegmentHeader.m_Imports) {
+    for (const auto& importsMap : m_SegmentHeader.m_imports) {
         //Get info about import from value at map.
         for (const auto& importInfo : importsMap.second) {
             //Get function pointer from module. (Support only function with name)
@@ -64,11 +64,11 @@ ExecutionStatus PatchManager::ReconstructHotPoints (DWORD pointer) {
 
 ExecutionStatus PatchManager::InvokeOEP (DWORD pointer) {
     //Set function address for call.
-    DUMP_HEADER_OEP_FUNCTION EntryFunctionCallback = reinterpret_cast<DUMP_HEADER_OEP_FUNCTION> (pointer + SEGMENT_OEP_RVA);
+    SEGMENT_HEADER_OEP_FUNCTION EntryFunctionCallback = reinterpret_cast<SEGMENT_HEADER_OEP_FUNCTION> (pointer + SEGMENT_OEP_RVA);
     //Check for non-null OEP address.
     if (!EntryFunctionCallback) return ExecutionStatus { NULL, "Can`t find OEP. Check RVA.", true };
     //Call "OEP" func with arguments.
-    EntryFunctionCallback(pointer, 1, 0);
+    EntryFunctionCallback(reinterpret_cast<HMODULE> (pointer), DLL_PROCESS_ATTACH, NULL);
     //All ok.
     return ExecutionStatus { NULL, "OEP invoked.", false };
 }

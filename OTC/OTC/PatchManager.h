@@ -7,15 +7,18 @@ class PatchManager {
 
 public:
 
-    SegmentHeader m_SegmentHeader;
-
-    //Extract dump to memory.
+    //Extract segment to memory.
     ExecutionStatus ExtractToMemory ();
 
     //Patch relocations and imports.
     ExecutionStatus ReconstructHotPoints (DWORD pointer);
 
-    //Just invoke dump.
+    //Just invoke segment.
     ExecutionStatus InvokeOEP (DWORD pointer);
+
+private:
+
+    //Pseudoheader for allocation and reconstruct.
+    SegmentHeader m_SegmentHeader;
 
 };
