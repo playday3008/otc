@@ -1,4 +1,4 @@
-# OneTap Crack DLL Loader.
+# OneTap Crack DLL Loader. ![Windows](https://github.com/0x000cb/otc/workflows/Windows/badge.svg?branch=master&event=push)
 
 [EN]
 
