@@ -24,4 +24,4 @@ jobs:
     # Build command
     - name: Build
       shell: cmd
-      run: '"%MSBUILD_PATH%\MSBuild.exe" otc/OTC/OTC/OTC.vcxproj /p:Platform=Win32 /p:Configuration=Release'
+      run: '"%MSBUILD_PATH%\MSBuild.exe" OTC/OTC/OTC.vcxproj /p:Platform=Win32 /p:Configuration=Release'
