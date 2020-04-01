@@ -7,11 +7,9 @@ jobs:
     - name: Setup MSBuild.exe
       uses: warrenbuckley/Setup-MSBuild@v1
     - uses: actions/checkout@v2
-
-    # Build command
     - name: Build OTC
       working-directory: OTC/OTC
-      run: msbuild OTC.vcxproj /p:Platform=Win32 /p:Configuration=Release' /p:VisualStudioVersion=16.0
+      run: msbuild OTC.vcxproj /p:Platform=Win32 /p:Configuration=Release' /p:VisualStudioVersion=16.0 /v:m
     - name: Move before upload
       working-directory: OTC/OTC/Release
       run: |
