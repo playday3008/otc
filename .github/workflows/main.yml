@@ -7,13 +7,9 @@ jobs:
     - uses: actions/checkout@v2
     - name: Setup MSBuild.exe
       uses: warrenbuckley/Setup-MSBuild@v1
-    - name: ls
-      run: ls
     - name: Build OTC
       working-directory: ./OTC/OTC
       run: msbuild OTC.vcxproj /p:Platform=Win32 /p:Configuration=Release /p:VisualStudioVersion=16.0
-    - name: ls
-      run: ls
     - name: Move before upload
       working-directory: ./OTC/OTC/Release
       run: |
