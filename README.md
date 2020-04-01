@@ -10,6 +10,7 @@ Hello. This dll loads the onetap crack v2 segment into cs go. You can find the l
 
 Known issues:
 - TriggerBot and Backtract in legit cause crashes.
+- Buybot don't work.
 
 -----------------------------------------------------
 
@@ -19,6 +20,7 @@ Known issues:
 
 Известные проблемы:
 - Триггербот и бэктрек в легите вызывает краши.
+- Бот автоматической закупки не работает.
 
 -----------------------------------------------------
 
@@ -29,7 +31,7 @@ Known issues:
   * Safe patcher with panic system.
   * Submodules for ez build.
   * Remove crash function from triggerbot/backtrack. ( Functionality may be lost )
-  * User-side debug support
+  * User-side debug support.
 
 -----------------------------------------------------
 
