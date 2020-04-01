@@ -5,25 +5,25 @@ jobs:
     runs-on: windows-latest
     steps:
     - uses: actions/checkout@v2
-    - name: ls
-      run: ls
     - name: Setup MSBuild.exe
       uses: warrenbuckley/Setup-MSBuild@v1
+    - name: cd
+      run: cd OTC
     - name: ls
       run: ls
     - name: Build OTC
-      working-directory: OTC/OTC
+      working-directory: OTC
       run: msbuild OTC.vcxproj /p:Platform=Win32 /p:Configuration=Release' /p:VisualStudioVersion=16.0
     - name: ls
       run: ls
     - name: Move before upload
-      working-directory: OTC/OTC/Release
+      working-directory: OTC/Release
       run: |
             mkdir ready
             Move-Item -Path .\OTC.dll -Destination .\ready\OTC.dll
       shell: pwsh
     - name: SHA1 OTC
-      working-directory: OTC/OTC/Release/ready
+      working-directory: OTC/Release/ready
       run: sha1sum OTC.dll > OTC.dll.sha1
     - uses: actions/upload-artifact@v1
       with:
