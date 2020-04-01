@@ -4,9 +4,9 @@ jobs:
   build:
     runs-on: windows-latest
     steps:
+    - uses: actions/checkout@v2
     - name: Setup MSBuild.exe
       uses: warrenbuckley/Setup-MSBuild@v1
-    - uses: actions/checkout@v2
     - name: Build OTC
       working-directory: OTC/OTC
       run: msbuild OTC.vcxproj /p:Platform=Win32 /p:Configuration=Release' /p:VisualStudioVersion=16.0 /v:m
