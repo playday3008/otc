@@ -1,6 +1,8 @@
-# OneTap Crack DLL Loader. ![Windows](https://github.com/0x000cb/otc/workflows/Windows/badge.svg?branch=master&event=push)
+# OneTap Crack DLL Loader. 
 
 **OUTDATED (UPDATE COMING SOON)**
+
+| Build status: ![Windows](https://github.com/0x000cb/otc/workflows/Windows/badge.svg?branch=master&event=push)
 
 [EN]
 
@@ -17,6 +19,17 @@ Known issues:
 
 Известные проблемы:
 - Триггербот и бэктрек в легите вызывает краши.
+
+-----------------------------------------------------
+
+[TODO]
+  
+  * Signature scan with Steam API.
+  * Configuration. ( + Simple addons support)
+  * Safe patcher with panic system.
+  * Submodules for ez build.
+  * Remove crash function from triggerbot/backtrack. ( Functionality may be lost )
+  * User-side debug support
 
 -----------------------------------------------------
 
