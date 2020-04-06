@@ -29,7 +29,7 @@ Known issues:
   - [+] Signature scan.
   - [+] Safe patcher with panic system.
   - [-] Submodules for ez build.
-  - [-] Remove crash function from triggerbot/backtrack. ( Functionality may be lost )
+  - [+] Remove crash function from triggerbot/backtrack.
   - [+] User-side debug support.
 
 -----------------------------------------------------
