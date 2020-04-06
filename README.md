@@ -26,12 +26,11 @@ Known issues:
 
 [TODO]
   
-  * Signature scan with Steam API.
-  * Configuration. ( + Simple addons support )
-  * Safe patcher with panic system.
-  * Submodules for ez build.
-  * Remove crash function from triggerbot/backtrack. ( Functionality may be lost )
-  * User-side debug support.
+  [+] Signature scan.
+  [+] Safe patcher with panic system.
+  [-] Submodules for ez build.
+  [-] Remove crash function from triggerbot/backtrack. ( Functionality may be lost )
+  [+] User-side debug support.
 
 -----------------------------------------------------
 
