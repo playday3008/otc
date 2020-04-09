@@ -27,13 +27,9 @@ https://youtu.be/xz-9E1FlqVI
 -----------------------------------------------------
 
 [TODO]
-  
-  - [+] Signature scan.
-  - [+] Safe patcher with panic system.
-  - [-] Submodules for ez build.
-  - [+] Remove crash function from triggerbot/backtrack.
-  - [+] User-side debug support.
 
+  - [-] Submodules for ez build.
+  
 -----------------------------------------------------
 
 - Last build/Последний билд: *TODO*
