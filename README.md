@@ -1,7 +1,5 @@
 # OneTap Crack DLL Loader. 
 
-**OUTDATED (UPDATE COMING SOON)**
-
 | Build status: ![Windows](https://github.com/0x000cb/otc/workflows/Windows/badge.svg?branch=master&event=push)
 
 [EN]
