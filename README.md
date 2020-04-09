@@ -7,7 +7,7 @@
 Hello. This dll loads the onetap crack v2 segment into cs go. You can find the latest version here.
 
 Known issues:
-- Buybot don't work.
+- Buybot doens't work.
 
 -----------------------------------------------------
 
