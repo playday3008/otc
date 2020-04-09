@@ -1,7 +1,5 @@
 ﻿#include "pch.h"
-#include "PatchManager.h"
-#include "GameUtils.h"
-#include "SegmentUtils.h"
+#include "RuntimeHandler.h"
 
 /**
  *
@@ -9,68 +7,96 @@
  * | How it's works ? |
  * o ----------------
  *
- *                           |---------------|
- *                    +++++> |  Relocations  | ======+
+ *                   |---------------|
+ *                +++++> |  Relocations  | ======+
  * |---------|        |      |---------------|       |        |-------------------------------------------|         |---------------|       |---------------------------|
- * | Segment | =======+                              -======> | Reconstruct hotpoints with new base addr. | ======> | OWN FUNCTIONS | ====> | Call Original Entry Point |
+ * | Segment | =======+                      -======> | Reconstruct hotpoints with new base addr. | ======> | OWN FUNCTIONS | ====> | Call Original Entry Point |
  * |---------|        |      |---------------|       |        |-------------------------------------------|         |---------------|       |---------------------------|
- *                    +++++> |    Imports    | ======+
- *                           |---------------|
+ *                +++++> |    Imports    | ======+
+ *                   |---------------|
  *
  *
- *                                                  +--------------------------------------------------------------+
- *                                                 + ############################################################## +
- *                                                + ################################################################ +
- *                                              + [+----------------------------------------------------------------+] +
- *                                           + # ]|[ #                       Dev - 0x000cb                        # ]|[ # +
- *                                           + # ]|[ #       Telegram - t.me/array0 | Discord - 0xb00b1e5#0089    # ]|[ # +
- *                                           + # ]|[ #   ------------------------------------------------------   # ]|[ # +
- *                                           + # ]|[ #                  Legacy help - HoShiMin                    # ]|[ # +
- *                                           + # ]|[ #                 Telegram - t.me/HoShiMin                   # ]|[ # +
- *                                              + [+----------------------------------------------------------------+] +
- *                                                + ################################################################ +
- *                                                 + ############################################################## +
- *                                                   +--------------------------------------------------------------+
+ *                                  +--------------------------------------------------------------+
+ *                                 + ############################################################## +
+ *                                + ################################################################ +
+ *                                  + [+----------------------------------------------------------------+] +
+ *                               + # ]|[ #                   Dev - 0x000cb                # ]|[ # +
+ *                               + # ]|[ #       Telegram - t.me/array0 | Discord - 0xb00b1e5#0089    # ]|[ # +
+ *                               + # ]|[ #   ------------------------------------------------------   # ]|[ # +
+ *                               + # ]|[ #              Legacy help - HoShiMin                # ]|[ # +
+ *                               + # ]|[ #             Telegram - t.me/HoShiMin               # ]|[ # +
+ *                                  + [+----------------------------------------------------------------+] +
+ *                                + ################################################################ +
+ *                                 + ############################################################## +
+ *                                   +--------------------------------------------------------------+
  *
  */
 
-BOOL APIENTRY DllMain(HMODULE hModule, DWORD callReason, LPVOID lpReserved) {
+//Scary but necessary.
+DWORD Segment::UnsafeAllocatedPointer = 0x0;
+DWORD Segment::UnsafeLibraryPointer = 0x0;
+SegmentFramework::VirtualFunctionCaller SegmentFramework::OriginalVirtualFunctionCaller = 0x0;
 
-    //ALL DOCS INSIDE FUNCTIONS.
+BOOL APIENTRY DllMain(HMODULE module, DWORD callReason, LPVOID lpReserved) {
+
+    //ALL DOCS INSIDE FUNCTIONS, AND HEADERS.
 
     if (callReason == DLL_PROCESS_ATTACH) {
 
-        PatchManager patchManager;
-        SegmentUtils segmentUtils;
-        GameUtils gameUtils;
+        Segment segment;
+        Logger logger (Logger::LoggerType::CONSOLE);
+        RuntimeHandler runtime (segment);
 
-        //We nicely display a load message.
-        gameUtils.ExecuteAtConsole ("log_color General 00FFFFFF");
-        gameUtils.ExecuteAtConsole ("developer 1"); // (To disable the annoying output from the side, use developer 0. But I do not recommend it as it often helps to catch bugs)
-        gameUtils.ExecuteAtConsole ("clear");
+        PanicUtils::SetImportant (&Segment::UnsafeLibraryPointer, reinterpret_cast<DWORD> (module));
 
-        ExecutionStatus allocationResult = patchManager.ExtractToMemory ();
+        logger.Info ("- - - - - - - - - - - - O N E T A P <-> L O A D E R - - - - - - - - - - - -");
+        logger.Space ();
+        logger.Info ("[RUNTIME] Extracting segment to memory....");
 
-        gameUtils.PrintToConsole (allocationResult.msg);
-        if (allocationResult.isCause) return TRUE;
-
-        ExecutionStatus reconstructResult = patchManager.ReconstructHotPoints (allocationResult.value);
-
-        gameUtils.PrintToConsole (reconstructResult.msg);
-        if (reconstructResult.isCause) return TRUE;
-
-        gameUtils.PrintToConsole ("Performing routine work with the segment...");
-        segmentUtils.CreateInfoTable (allocationResult.value, "yougame.biz | infocheats.net");
-        segmentUtils.UpdateNetVars (allocationResult.value);
-        segmentUtils.CreateHook (allocationResult.value);
-        gameUtils.PrintToConsole ("Complete.");
-
-        ExecutionStatus invokeResult = patchManager.InvokeOEP (allocationResult.value);
+        runtime.ExtractSegment();
         
-        gameUtils.PrintToConsole (invokeResult.msg);
-        if (invokeResult.isCause) return TRUE;
+        logger.Info ("[RUNTIME] Segment extracted.");
+        logger.Info ("[RUNTIME] Reconstructing hot-points...");
 
-        gameUtils.PrintToConsole ("All complete. GL&HF.");
+        runtime.ReconstructHotPoints();
+        
+        logger.Info ("[RUNTIME] Hot-points reconstructed.");
+        logger.Info ("[RUNTIME] Wait until the framework complete routine work...");
+        logger.Space ();
+
+        logger.Info ("[FRAMEWORK] Filling the internal table... [Libs, Offsets] (~7-15 sec)");
+
+        segment.GetFramework().CreateInfoTable ();
+
+        logger.Info ("[FRAMEWORK] Table filled.");
+        logger.Info ("[FRAMEWORK] Updating netvars...");
+
+        segment.GetFramework().UpdateNetVars();
+
+        logger.Info ("[FRAMEWORK] Netvars updated.");
+        logger.Info ("[FRAMEWORK] Creating hook for internal function...");
+
+        segment.GetFramework().CreateHook();
+
+        logger.Info ("[FRAMEWORK] All completed.");
+        logger.Space ();
+        logger.Info ("[RUNTIME] Invoking OEP...");
+       
+        runtime.InvokeOEP();
+
+        logger.Info ("[RUNTIME] OEP invoked.");
+        logger.Space ();
+            
+        //Llama killed my wife for internet connecshion, pleace don't remove this. <3
+        logger.Info ("To express gratitude (Bitcoin): bc1quufv2upsfdnla345q25zjmqkg4v6vldv5p8srg.");
+        logger.Space ();
+        //True.
+        logger.Info ("Leaks/Cheats/Configs: https://www.yougame.biz."); 
+        logger.Info ("Important: This is not an advertisement. You can find me there online 24/7. Username: 0x000cb");
+        logger.Space ();
+
+        logger.Info ("- - - - - - - - - - - - O N E T A P <-> L O A D E R - - - - - - - - - - - -");
+        logger.Space ();
 
     }
 

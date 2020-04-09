@@ -2,16 +2,6 @@
 
 #include "pch.h"
 
-//A simple solution for not use exceptions.
-struct ExecutionStatus {
-    //Return value from function. (If exception value always NULL)
-    DWORD value;
-    //Return result. (If exception return exception reason)
-    const char* msg;
-    //If exception result true.
-    bool isCause;
-};
-
 class Utils {
 
 public:
@@ -40,5 +30,16 @@ public:
      **/
 
     static DWORD GetFunction (const char* module, const char* function);
+
+    /**
+     * Find offsets and fill to vector.
+     *
+     * @param module - Module name.
+     * @param signatures - Signatures vector.
+     * @param vector - Fill vector.
+     * @param isPanic - Call panic when offset not found.
+     **/
+
+    static void FindOffsetsToVec (const char* module, std::vector<const char*> signatures, std::vector<DWORD>& vector, bool isPanic = false);
 
 };
