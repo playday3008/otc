@@ -20,7 +20,6 @@
 #include "Segment.h"
 #include "GameFramework.h"
 #include "PanicUtils.h"
-#include "Configuration.h"
 #include "Logger.h"
 
 #pragma comment (lib, "HookLib.lib")
