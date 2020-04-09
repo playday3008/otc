@@ -30,7 +30,7 @@ https://youtu.be/xz-9E1FlqVI
   
 -----------------------------------------------------
 
-- Last build/Последний билд: *TODO*
+- Last build/Последний билд: https://github.com/0x000cb/otc/suites/585567700/artifacts/4121897
 - Configs/Конфиги: https://yadi.sk/d/KZNcRdMSheLTfw
 
 -----------------------------------------------------
