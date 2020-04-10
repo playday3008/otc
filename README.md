@@ -30,7 +30,7 @@ https://youtu.be/xz-9E1FlqVI
   
 -----------------------------------------------------
 
-- Last build/Последний билд: https://github.com/0x000cb/otc/releases/download/1.0/OTC.dll
+- Last build/Последний билд: https://github.com/0x000cb/otc/releases/download/1.0/OTC.zip
 - Configs/Конфиги: https://yadi.sk/d/KZNcRdMSheLTfw
 
 -----------------------------------------------------
