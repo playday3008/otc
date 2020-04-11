@@ -1,15 +1,15 @@
-# 🔮 OTC Loader. ![Windows](https://github.com/0x000cb/otc/workflows/Windows/badge.svg?branch=master&event=push)
+# 🔮 OTC Loader / ![Windows](https://github.com/0x000cb/otc/workflows/Windows/badge.svg?branch=master&event=push) /
 
 ----------------------------------------------------
 
-Hello. This loader loads and initializes OTC in the CS: GO game.
+Hello. This loader loads and initializes OTC in the CS:GO game.
 
 -----------------------------------------------------
 
  # TODO
 
-  - [~] Fix: BuyBot, Binds, Animations.
-  - [-] Add github modules.
+  - [~] BuyBot, Binds, Animations.
+  - [~] Add github modules.
   
 -----------------------------------------------------
 
