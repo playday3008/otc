@@ -2,7 +2,7 @@
 #include "Logger.h"
 
 //The most convenient way to store a link to a file.
-std::ofstream GLoggerFile (std::string (getenv("USERPROFILE")) + "\\Desktop\\otc_latest.txt");
+std::ofstream GLoggerFile (std::string (getenv("USERPROFILE")) + "\\Documents\\otc_latest.txt");
 
 void Logger::Setup () {
 
