@@ -8,18 +8,18 @@ jobs:
     - name: Setup MSBuild.exe
       uses: warrenbuckley/Setup-MSBuild@v1
     - name: Build OTC
-      working-directory: ./OTC/OTC
+      working-directory: ./OTC/OTC/project
       run: msbuild OTC.vcxproj /p:Platform=Win32 /p:Configuration=Release /p:VisualStudioVersion=16.0
     - name: Move before upload
-      working-directory: ./OTC/OTC/Release
+      working-directory: ./OTC/OTC/project/Release
       run: |
             mkdir ready
             Move-Item -Path .\OTC.dll -Destination .\ready\OTC.dll
       shell: pwsh
     - name: SHA1 OTC
-      working-directory: ./OTC/OTC/Release/ready
+      working-directory: ./OTC/OTC/project/Release/ready
       run: sha1sum OTC.dll > OTC.dll.sha1
     - uses: actions/upload-artifact@v1
       with:
         name: Release OTC
-        path: ./OTC/OTC/Release/ready
+        path: ./OTC/OTC/project/Release/ready
