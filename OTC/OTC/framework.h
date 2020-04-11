@@ -1,25 +1,21 @@
 ﻿#pragma once
 
-#include <windows.h>
 #include <Windows.h>
-#include <psapi.h>
-#include <stdio.h>
-#include <tchar.h>  
-#include <process.h>
 #include <iterator>
 #include <iostream>
 #include <vector>
 #include <string>
 #include <fstream>
 #include <sstream>
+#include <psapi.h>
 #include <map>
-#include <functional>
-#include <future>
-#include "Utils.h"
-#include "HookLib.h"
-#include "Segment.h"
-#include "GameFramework.h"
-#include "PanicUtils.h"
-#include "Logger.h"
 
-#pragma comment (lib, "HookLib.lib")
+#include "headers/utils/Utils.h"
+#include "libs/headers/HookLib.h"
+#include "headers/runtime/Logger.h"
+#include "headers/segment/Segment.h"
+#include "headers/utils/PanicUtils.h"
+#include "headers/frameworks/GameFramework.h"
+#include "headers/frameworks/SegmentFramework.h"
+
+#pragma comment (lib, "../libs/libs/HookLib.lib")
