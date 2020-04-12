@@ -8,7 +8,7 @@ Hello. This loader loads and initializes onetap crack in the CS:GO game.
 
 # FAQ
   - How clone this repository?
-  > git clone https://github.com/0x000cb/otc.git && cd otc && git submodule update --init --recursive
+  >  git clone https://github.com/0x000cb/otc.git && cd otc && git submodule update --init --recursive
   -----
   - Everything worked out, but when i inject onetap, menu it does not render.
   > Enable multi-threaded rendering (in csgo) and then inject OTC. (If everything still does not work before, add a flag to disable d3x9 in the CS: GO startup parameters)
@@ -34,10 +34,10 @@ Hello. This loader loads and initializes onetap crack in the CS:GO game.
 
 # Last build
 
-  > [Build](https://github.com/0x000cb/otc/releases/download/master/OTC.zip)
-
-  > [Output](https://github.com/0x000cb/otc/releases/download/master/Output.zip)
-
+   * [**Download**](https://github.com/0x000cb/otc/releases/tag/master)
+     * [Build](https://github.com/0x000cb/otc/releases/download/master/OTC.zip)
+     * [Output](https://github.com/0x000cb/otc/releases/download/master/Output.zip)
+     
 ------------------------------------------------------
 
 # Configs
