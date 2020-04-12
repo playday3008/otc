@@ -1,4 +1,3 @@
-[submodule "OTC\\HookLib"]
-	path = OTC\\HookLib
-	url = https://github.com/HoShiMin/HookLib.git
-	branch = master
+[submodule "OTC/libs/libs/HookLib"]
+	path = OTC/libs/libs/HookLib
+	url = https://github.com/playday3008/HookLib
