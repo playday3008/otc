@@ -32,8 +32,11 @@ Hello. This loader loads and initializes onetap crack in the CS:GO game.
   
 -----------------------------------------------------
 
-# Last builds
-  > [ZIP #1](https://github.com/0x000cb/otc/releases/download/master/OTC.zip)
+# Last build
+
+  > [Build](https://github.com/0x000cb/otc/releases/download/master/OTC.zip)
+
+  > [Output](https://github.com/0x000cb/otc/releases/download/master/Output.zip)
 
 ------------------------------------------------------
 
@@ -47,8 +50,12 @@ Hello. This loader loads and initializes onetap crack in the CS:GO game.
   * [0x000cb](https://github.com/0x000cb) - it's me! (Project creator & reverse staff)
   * [HoShiMin](https://github.com/HoShiMin) - Legacy & Native help. (Easy hook with HookLib :d)
   * [playday3008](https://github.com/playday3008) - Help with github & frequent pull requests.
+
   ------
+
   *  ♥ Community - Thank you for helping to develop and improve the project.
   *  ♥ toast, wnz, d3x - Thank you for starting all this. (p.s Original onetap crack authors)
+
   ------
+
   *  🛡️ flyingllama - Thank you for skeet level security.
