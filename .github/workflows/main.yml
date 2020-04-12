@@ -31,16 +31,10 @@ jobs:
     - name: Build OTC
       working-directory: ./OTC
       run: msbuild OTC.vcxproj /p:Platform=Win32 /p:PreBuildEvent= /p:Configuration=Release /p:VisualStudioVersion=16.0
-    - name: Move before upload
-      working-directory: ./OTC/build
-      run: |
-            mkdir ready
-            Move-Item -Path .\OTC.dll -Destination .\ready\OTC.dll
-      shell: pwsh
     - name: SHA1 OTC
-      working-directory: ./OTC/build/ready
+      working-directory: ./OTC/build
       run: sha1sum OTC.dll > OTC.dll.sha1
     - uses: actions/upload-artifact@v1
       with:
         name: Release OTC
-        path: ./OTC/build/ready
+        path: ./OTC/build
