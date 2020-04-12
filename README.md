@@ -15,6 +15,9 @@ Hello. This loader loads and initializes OTC in the CS:GO game.
   ------
   - When you already fix what I need so much ??? I can’t play without it !!! (There should be a function name without which you cannot play)
   > First of all, we try to solve the most important problems. In TODO, you can see the order in which work is currently being performed.
+  ----
+  - Crash when inject OTC.
+   > Make sure you have the latest version of OTC. If you inject an addon then try without it, very often it causes crashes. (Injector problems are also possible. Try using Process Hacker.)
 
 -----------------------------------------------------
 
