@@ -2,7 +2,7 @@
 
 ----------------------------------------------------
 
-Hello. This loader loads and initializes OTC in the CS:GO game.
+Hello. This loader loads and initializes onetap crack in the CS:GO game.
 
 -----------------------------------------------------
 
