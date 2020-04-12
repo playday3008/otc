@@ -107,7 +107,8 @@ copy $(ProjectDir)Debug\HookLib.pdb $(ProjectDir)libs\libs\HookLib.pdb
 if not exist $(ProjectDir)libs\objects mkdir $(ProjectDir)libs\objects
 copy $(ProjectDir)libs\libs\HookLib\HookLib\Debug\HookLib.obj $(ProjectDir)libs\objects\HookLib.obj
 copy $(ProjectDir)libs\libs\Zydis\msvc\bin\DebugX86\Zydis.lib $(ProjectDir)libs\libs\Zydis.lib
-copy "$(ProjectDir)libs\libs\Zydis\msvc\zydis\obj\Zydis-Win32-Debug MT\Zydis.pdb" "$(ProjectDir)libs\libs\Zydis.pdb"</Command>
+copy "$(ProjectDir)libs\libs\Zydis\msvc\zydis\obj\Zydis-Win32-Debug MT\Zydis.pdb" "$(ProjectDir)libs\libs\Zydis.pdb"
+RD /S /Q "$(ProjectDir)Debug"</Command>
     </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -161,7 +162,8 @@ copy $(ProjectDir)libs\libs\HookLib\HookLib\Release\HookLib.pdb $(ProjectDir)lib
 if not exist $(ProjectDir)libs\objects mkdir $(ProjectDir)libs\objects
 copy $(ProjectDir)libs\libs\HookLib\HookLib\Release\HookLib.obj $(ProjectDir)libs\objects\HookLib.obj
 copy $(ProjectDir)libs\libs\Zydis\msvc\bin\ReleaseX86\Zydis.lib $(ProjectDir)libs\libs\Zydis.lib
-copy "$(ProjectDir)libs\libs\Zydis\msvc\zydis\obj\Zydis-Win32-Release MT\Zydis.pdb" "$(ProjectDir)libs\libs\Zydis.pdb"</Command>
+copy "$(ProjectDir)libs\libs\Zydis\msvc\zydis\obj\Zydis-Win32-Release MT\Zydis.pdb" "$(ProjectDir)libs\libs\Zydis.pdb"
+RD /S /Q "$(ProjectDir)Release"</Command>
     </PreBuildEvent>
   </ItemDefinitionGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
