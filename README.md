@@ -8,7 +8,7 @@ Hello. This loader loads and initializes OTC in the CS:GO game.
 
 # FAQ
   - How clone this repository?
-  > git clone https://github.com/0x000cb/otc.git && git submodule update --init --recursive
+  > git clone https://github.com/0x000cb/otc.git && cd otc && git submodule update --init --recursive
   -----
   - Everything worked out, but when i inject onetap, menu it does not render.
   > Enable multi-threaded rendering (in csgo) and then inject OTC. (If everything still does not work before, add a flag to disable d3x9 in the CS: GO startup parameters)
