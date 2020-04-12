@@ -8,16 +8,35 @@ Hello. This loader loads and initializes onetap crack in the CS:GO game.
 
 # FAQ
   * How clone this repository?
-    * git clone https://github.com/0x000cb/otc.git && cd otc && git submodule update --init --recursive
+    * git clone https://github.com/0x000cb/otc.git 
+    * cd otc
+    * git submodule update --init --recursive
   * Everything worked out, but when i inject onetap, menu it does not render.
-    * Enable multi-threaded rendering (in csgo) and then inject OTC. (If everything still does not work before, add a flag to disable d3x9 in the CS: GO startup parameters)
+    * Enable multi-threaded rendering (in csgo) and then inject OTC. 
+    * If everything still does not work before, add a flag to disable d3x9 in the CS: GO startup parameters.
   * When you already fix what I need so much ??? I can’t play without it !!! (There should be a function name without which you cannot play)
-    * First of all, we try to solve the most important problems. In TODO, you can see the order in which work is currently being performed.
+    * First of all, we try to solve the most important problems. 
+    * In TODO, you can see the order in which work is currently being performed.
   * The game crashes when I try inject OTC.
-    * Make sure you have the latest version of OTC. If you inject an addon then try without it, very often it causes crashes. (Injector problems are also possible. Try using Process Hacker.)
+    * Make sure you have the latest version of OTC. 
+     * If you inject an addon then try without it, very often it causes crashes.
+     * Injector problems are also possible. (Try use process hacker)
   * I found this repository, but can't find OneTap source code.
     * Right. This is just a loader, that initializes & patch & invoke a binary file in game memory. You can watch/patch file [**here**](https://github.com/0x000cb/otc/blob/master/OTC/cpp/segment/Segment.cpp).
- 
+  * How update signatures, index's, and netvars?
+    * Signatures.
+       * Vector: [m_signatures](https://github.com/0x000cb/otc/blob/master/OTC/headers/frameworks/SegmentFramework.h#L78) 
+       * FAQ: [#12](https://github.com/0x000cb/otc/issues/12) 
+    * Index's
+       * Function: [CustomVirtualCaller](https://github.com/0x000cb/otc/blob/master/OTC/cpp/frameworks/SegmentFramework.cpp#L86)
+       * You just need to go to unknowncheats, find out which index the rest have shifted from, and how much, and set this as a rule in the method.
+       * Example:
+           I know that indexes since 190 have shifted by 2.
+           So I need to do like this: index> 189 index + = 2;
+           This will quickly and easily fix indexes.
+     * Netvars:
+        * Vector: [m_netvars](https://github.com/0x000cb/otc/blob/master/OTC/headers/frameworks/SegmentFramework.h#L72)
+        * Just change the second argument in the structure to the current value. It's all. (Recommend use: hazedumper)
 -----------------------------------------------------
 
  # TODO
