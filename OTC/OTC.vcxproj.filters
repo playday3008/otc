@@ -48,76 +48,76 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\dllmain.cpp">
+    <ClCompile Include="dllmain.cpp">
       <Filter>development</Filter>
     </ClCompile>
-    <ClCompile Include="..\cpp\frameworks\GameFramework.cpp">
+    <ClCompile Include="cpp\frameworks\GameFramework.cpp">
       <Filter>development\cpp\frameworks</Filter>
     </ClCompile>
-    <ClCompile Include="..\cpp\frameworks\SegmentFramework.cpp">
+    <ClCompile Include="cpp\frameworks\SegmentFramework.cpp">
       <Filter>development\cpp\frameworks</Filter>
     </ClCompile>
-    <ClCompile Include="..\cpp\runtime\Logger.cpp">
+    <ClCompile Include="cpp\runtime\Logger.cpp">
       <Filter>development\cpp\runtime</Filter>
     </ClCompile>
-    <ClCompile Include="..\cpp\runtime\RuntimeHandler.cpp">
+    <ClCompile Include="cpp\runtime\RuntimeHandler.cpp">
       <Filter>development\cpp\runtime</Filter>
     </ClCompile>
-    <ClCompile Include="..\cpp\segment\SegmentHeaderManager.cpp">
+    <ClCompile Include="cpp\segment\SegmentHeaderManager.cpp">
       <Filter>development\cpp\segment</Filter>
     </ClCompile>
-    <ClCompile Include="..\cpp\segment\Segment.cpp">
+    <ClCompile Include="cpp\segment\Segment.cpp">
       <Filter>development\cpp\segment</Filter>
     </ClCompile>
-    <ClCompile Include="..\cpp\utils\Utils.cpp">
+    <ClCompile Include="cpp\utils\Utils.cpp">
       <Filter>development\cpp\utils</Filter>
     </ClCompile>
-    <ClCompile Include="..\cpp\utils\PanicUtils.cpp">
+    <ClCompile Include="cpp\utils\PanicUtils.cpp">
       <Filter>development\cpp\utils</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\libs\headers\HookLib.h">
+    <ClInclude Include="libs\headers\HookLib.h">
       <Filter>development\libs\headers</Filter>
     </ClInclude>
-    <ClInclude Include="..\headers\frameworks\SegmentFramework.h">
+    <ClInclude Include="headers\frameworks\SegmentFramework.h">
       <Filter>development\headers\frameworks</Filter>
     </ClInclude>
-    <ClInclude Include="..\headers\frameworks\GameFramework.h">
+    <ClInclude Include="headers\frameworks\GameFramework.h">
       <Filter>development\headers\frameworks</Filter>
     </ClInclude>
-    <ClInclude Include="..\headers\runtime\RuntimeHandler.h">
+    <ClInclude Include="headers\runtime\RuntimeHandler.h">
       <Filter>development\headers\runtime</Filter>
     </ClInclude>
-    <ClInclude Include="..\headers\runtime\Logger.h">
+    <ClInclude Include="headers\runtime\Logger.h">
       <Filter>development\headers\runtime</Filter>
     </ClInclude>
-    <ClInclude Include="..\headers\segment\SegmentHeader.h">
+    <ClInclude Include="headers\segment\SegmentHeader.h">
       <Filter>development\headers\segment</Filter>
     </ClInclude>
-    <ClInclude Include="..\headers\segment\Segment.h">
+    <ClInclude Include="headers\segment\Segment.h">
       <Filter>development\headers\segment</Filter>
     </ClInclude>
-    <ClInclude Include="..\headers\utils\PanicUtils.h">
+    <ClInclude Include="headers\utils\PanicUtils.h">
       <Filter>development\headers\utils</Filter>
     </ClInclude>
-    <ClInclude Include="..\headers\utils\Utils.h">
+    <ClInclude Include="headers\utils\Utils.h">
       <Filter>development\headers\utils</Filter>
     </ClInclude>
-    <ClInclude Include="..\framework.h">
+    <ClInclude Include="framework.h">
       <Filter>development</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <Library Include="..\libs\libs\HookLib.lib">
+    <Library Include="libs\libs\HookLib.lib">
       <Filter>development\libs\libs</Filter>
     </Library>
-    <Library Include="..\libs\libs\Zydis.lib">
+    <Library Include="libs\libs\Zydis.lib">
       <Filter>development\libs\libs</Filter>
     </Library>
   </ItemGroup>
   <ItemGroup>
-    <Object Include="..\libs\objects\HookLib.obj">
+    <Object Include="libs\objects\HookLib.obj">
       <Filter>development\libs\objects</Filter>
     </Object>
   </ItemGroup>

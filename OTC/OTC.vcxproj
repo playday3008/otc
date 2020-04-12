@@ -11,34 +11,34 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\cpp\frameworks\GameFramework.cpp" />
-    <ClCompile Include="..\cpp\frameworks\SegmentFramework.cpp" />
-    <ClCompile Include="..\cpp\runtime\Logger.cpp" />
-    <ClCompile Include="..\cpp\runtime\RuntimeHandler.cpp" />
-    <ClCompile Include="..\cpp\segment\Segment.cpp" />
-    <ClCompile Include="..\cpp\segment\SegmentHeaderManager.cpp" />
-    <ClCompile Include="..\cpp\utils\PanicUtils.cpp" />
-    <ClCompile Include="..\cpp\utils\Utils.cpp" />
-    <ClCompile Include="..\dllmain.cpp" />
+    <ClCompile Include="cpp\frameworks\GameFramework.cpp" />
+    <ClCompile Include="cpp\frameworks\SegmentFramework.cpp" />
+    <ClCompile Include="cpp\runtime\Logger.cpp" />
+    <ClCompile Include="cpp\runtime\RuntimeHandler.cpp" />
+    <ClCompile Include="cpp\segment\Segment.cpp" />
+    <ClCompile Include="cpp\segment\SegmentHeaderManager.cpp" />
+    <ClCompile Include="cpp\utils\PanicUtils.cpp" />
+    <ClCompile Include="cpp\utils\Utils.cpp" />
+    <ClCompile Include="dllmain.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\framework.h" />
-    <ClInclude Include="..\headers\frameworks\GameFramework.h" />
-    <ClInclude Include="..\headers\frameworks\SegmentFramework.h" />
-    <ClInclude Include="..\headers\runtime\Logger.h" />
-    <ClInclude Include="..\headers\runtime\RuntimeHandler.h" />
-    <ClInclude Include="..\headers\segment\Segment.h" />
-    <ClInclude Include="..\headers\segment\SegmentHeader.h" />
-    <ClInclude Include="..\headers\utils\PanicUtils.h" />
-    <ClInclude Include="..\headers\utils\Utils.h" />
-    <ClInclude Include="..\libs\headers\HookLib.h" />
+    <ClInclude Include="framework.h" />
+    <ClInclude Include="headers\frameworks\GameFramework.h" />
+    <ClInclude Include="headers\frameworks\SegmentFramework.h" />
+    <ClInclude Include="headers\runtime\Logger.h" />
+    <ClInclude Include="headers\runtime\RuntimeHandler.h" />
+    <ClInclude Include="headers\segment\Segment.h" />
+    <ClInclude Include="headers\segment\SegmentHeader.h" />
+    <ClInclude Include="headers\utils\PanicUtils.h" />
+    <ClInclude Include="headers\utils\Utils.h" />
+    <ClInclude Include="libs\headers\HookLib.h" />
   </ItemGroup>
   <ItemGroup>
-    <Library Include="..\libs\libs\HookLib.lib" />
-    <Library Include="..\libs\libs\Zydis.lib" />
+    <Library Include="libs\libs\HookLib.lib" />
+    <Library Include="libs\libs\Zydis.lib" />
   </ItemGroup>
   <ItemGroup>
-    <Object Include="..\libs\objects\HookLib.obj" />
+    <Object Include="libs\objects\HookLib.obj" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
