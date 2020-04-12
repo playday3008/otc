@@ -352,4 +352,4 @@ MigrationBackup/
 # Ionide (cross platform F# VS Code tools) working folder
 .ionide/
 /OTC/build
-/OTC/libs/libs
+/OTC/libs/libs/*.lib
