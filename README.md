@@ -47,4 +47,5 @@ Hello. This loader loads and initializes OTC in the CS:GO game.
   ------
   *  ♥ Community - Thank you for helping to develop and improve the project.
   *  ♥ toast, wnz, d3x - Thank you for starting all this. (p.s Original onetap crack authors)
+  ------
   *  🛡️ flyingllama - Thank you for skeet level security.
