@@ -1,3 +1,6 @@
 [submodule "OTC/libs/libs/HookLib"]
 	path = OTC/libs/libs/HookLib
 	url = https://github.com/playday3008/HookLib
+[submodule "OTC/libs/libs/Zydis"]
+	path = OTC/libs/libs/Zydis
+	url = https://github.com/zyantific/zydis
