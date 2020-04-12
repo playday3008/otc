@@ -33,7 +33,7 @@ Hello. This loader loads and initializes OTC in the CS:GO game.
 -----------------------------------------------------
 
 # Last builds
-  > [ZIP #1](https://github.com/0x000cb/otc/releases/download/1.0/OTC.zip)
+  > [ZIP #1](https://github.com/0x000cb/otc/releases/download/master/OTC.zip)
 
 ------------------------------------------------------
 
