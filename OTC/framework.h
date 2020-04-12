@@ -18,4 +18,4 @@
 #include "headers/frameworks/GameFramework.h"
 #include "headers/frameworks/SegmentFramework.h"
 
-#pragma comment (lib, "../libs/libs/HookLib.lib")
+#pragma comment (lib, "libs/libs/HookLib.lib")

@@ -11,34 +11,34 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\cpp\frameworks\GameFramework.cpp" />
-    <ClCompile Include="..\cpp\frameworks\SegmentFramework.cpp" />
-    <ClCompile Include="..\cpp\runtime\Logger.cpp" />
-    <ClCompile Include="..\cpp\runtime\RuntimeHandler.cpp" />
-    <ClCompile Include="..\cpp\segment\Segment.cpp" />
-    <ClCompile Include="..\cpp\segment\SegmentHeaderManager.cpp" />
-    <ClCompile Include="..\cpp\utils\PanicUtils.cpp" />
-    <ClCompile Include="..\cpp\utils\Utils.cpp" />
-    <ClCompile Include="..\dllmain.cpp" />
+    <ClCompile Include="cpp\frameworks\GameFramework.cpp" />
+    <ClCompile Include="cpp\frameworks\SegmentFramework.cpp" />
+    <ClCompile Include="cpp\runtime\Logger.cpp" />
+    <ClCompile Include="cpp\runtime\RuntimeHandler.cpp" />
+    <ClCompile Include="cpp\segment\Segment.cpp" />
+    <ClCompile Include="cpp\segment\SegmentHeaderManager.cpp" />
+    <ClCompile Include="cpp\utils\PanicUtils.cpp" />
+    <ClCompile Include="cpp\utils\Utils.cpp" />
+    <ClCompile Include="dllmain.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\framework.h" />
-    <ClInclude Include="..\headers\frameworks\GameFramework.h" />
-    <ClInclude Include="..\headers\frameworks\SegmentFramework.h" />
-    <ClInclude Include="..\headers\runtime\Logger.h" />
-    <ClInclude Include="..\headers\runtime\RuntimeHandler.h" />
-    <ClInclude Include="..\headers\segment\Segment.h" />
-    <ClInclude Include="..\headers\segment\SegmentHeader.h" />
-    <ClInclude Include="..\headers\utils\PanicUtils.h" />
-    <ClInclude Include="..\headers\utils\Utils.h" />
-    <ClInclude Include="..\libs\headers\HookLib.h" />
+    <ClInclude Include="framework.h" />
+    <ClInclude Include="headers\frameworks\GameFramework.h" />
+    <ClInclude Include="headers\frameworks\SegmentFramework.h" />
+    <ClInclude Include="headers\runtime\Logger.h" />
+    <ClInclude Include="headers\runtime\RuntimeHandler.h" />
+    <ClInclude Include="headers\segment\Segment.h" />
+    <ClInclude Include="headers\segment\SegmentHeader.h" />
+    <ClInclude Include="headers\utils\PanicUtils.h" />
+    <ClInclude Include="headers\utils\Utils.h" />
+    <ClInclude Include="libs\headers\HookLib.h" />
   </ItemGroup>
   <ItemGroup>
-    <Library Include="..\libs\libs\HookLib.lib" />
-    <Library Include="..\libs\libs\Zydis.lib" />
+    <Library Include="libs\libs\HookLib.lib" />
+    <Library Include="libs\libs\Zydis.lib" />
   </ItemGroup>
   <ItemGroup>
-    <Object Include="..\libs\objects\HookLib.obj" />
+    <Object Include="libs\objects\HookLib.obj" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
@@ -101,6 +101,14 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableUAC>false</EnableUAC>
     </Link>
+    <PreBuildEvent>
+      <Command>copy $(ProjectDir)Debug\HookLib.lib $(ProjectDir)libs\libs\HookLib.lib
+copy $(ProjectDir)Debug\HookLib.pdb $(ProjectDir)libs\libs\HookLib.pdb
+if not exist $(ProjectDir)libs\objects mkdir $(ProjectDir)libs\objects
+copy $(ProjectDir)libs\libs\HookLib\HookLib\Debug\HookLib.obj $(ProjectDir)libs\objects\HookLib.obj
+copy $(ProjectDir)libs\libs\Zydis\msvc\bin\DebugX86\Zydis.lib $(ProjectDir)libs\libs\Zydis.lib
+copy "$(ProjectDir)libs\libs\Zydis\msvc\zydis\obj\Zydis-Win32-Debug MT\Zydis.pdb" "$(ProjectDir)libs\libs\Zydis.pdb"</Command>
+    </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
@@ -147,6 +155,14 @@
     <BuildLog>
       <Path>$(BuildDir)log\$(MSBuildProjectName).log</Path>
     </BuildLog>
+    <PreBuildEvent>
+      <Command>copy $(ProjectDir)Release\HookLib.lib $(ProjectDir)libs\libs\HookLib.lib
+copy $(ProjectDir)libs\libs\HookLib\HookLib\Release\HookLib.pdb $(ProjectDir)libs\libs\HookLib.pdb
+if not exist $(ProjectDir)libs\objects mkdir $(ProjectDir)libs\objects
+copy $(ProjectDir)libs\libs\HookLib\HookLib\Release\HookLib.obj $(ProjectDir)libs\objects\HookLib.obj
+copy $(ProjectDir)libs\libs\Zydis\msvc\bin\ReleaseX86\Zydis.lib $(ProjectDir)libs\libs\Zydis.lib
+copy "$(ProjectDir)libs\libs\Zydis\msvc\zydis\obj\Zydis-Win32-Release MT\Zydis.pdb" "$(ProjectDir)libs\libs\Zydis.pdb"</Command>
+    </PreBuildEvent>
   </ItemDefinitionGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
