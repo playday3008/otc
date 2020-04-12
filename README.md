@@ -16,7 +16,7 @@ Hello. This loader loads and initializes OTC in the CS:GO game.
   - When you already fix what I need so much ??? I can’t play without it !!! (There should be a function name without which you cannot play)
   > First of all, we try to solve the most important problems. In TODO, you can see the order in which work is currently being performed.
   ----
-  - Crash when inject OTC.
+  - The game crashes when I try inject OTC.
    > Make sure you have the latest version of OTC. If you inject an addon then try without it, very often it causes crashes. (Injector problems are also possible. Try using Process Hacker.)
 
 -----------------------------------------------------
@@ -43,7 +43,7 @@ Hello. This loader loads and initializes OTC in the CS:GO game.
 
   * [0x000cb](https://github.com/0x000cb) - it's me! (Project creator & reverse staff)
   * [HoShiMin](https://github.com/HoShiMin) - Legacy & Native help. (Easy hook with HookLib :d)
-  * [playday3008](https://github.com/playday3008) - Help with git & frequent pull requests.
+  * [playday3008](https://github.com/playday3008) - Help with github & frequent pull requests.
   ------
   *  ♥ Community - Thank you for helping to develop and improve the project.
   *  ♥ toast, wnz, d3x - Thank you for starting all this. (p.s Original onetap crack authors)
