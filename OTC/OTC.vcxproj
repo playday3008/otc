@@ -101,6 +101,14 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableUAC>false</EnableUAC>
     </Link>
+    <PreBuildEvent>
+      <Command>copy $(ProjectDir)Debug\HookLib.lib $(ProjectDir)libs\libs\HookLib.lib
+copy $(ProjectDir)Debug\HookLib.pdb $(ProjectDir)libs\libs\HookLib.pdb
+if not exist $(ProjectDir)libs\objects mkdir $(ProjectDir)libs\objects
+copy $(ProjectDir)libs\libs\HookLib\HookLib\Debug\HookLib.obj $(ProjectDir)libs\objects\HookLib.obj
+copy $(ProjectDir)libs\libs\Zydis\msvc\bin\DebugX86\Zydis.lib $(ProjectDir)libs\libs\Zydis.lib
+copy "$(ProjectDir)libs\libs\Zydis\msvc\zydis\obj\Zydis-Win32-Debug MT\Zydis.pdb" "$(ProjectDir)libs\libs\Zydis.pdb"</Command>
+    </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
@@ -147,6 +155,14 @@
     <BuildLog>
       <Path>$(BuildDir)log\$(MSBuildProjectName).log</Path>
     </BuildLog>
+    <PreBuildEvent>
+      <Command>copy $(ProjectDir)Release\HookLib.lib $(ProjectDir)libs\libs\HookLib.lib
+copy $(ProjectDir)libs\libs\HookLib\HookLib\Release\HookLib.pdb $(ProjectDir)libs\libs\HookLib.pdb
+if not exist $(ProjectDir)libs\objects mkdir $(ProjectDir)libs\objects
+copy $(ProjectDir)libs\libs\HookLib\HookLib\Release\HookLib.obj $(ProjectDir)libs\objects\HookLib.obj
+copy $(ProjectDir)libs\libs\Zydis\msvc\bin\ReleaseX86\Zydis.lib $(ProjectDir)libs\libs\Zydis.lib
+copy "$(ProjectDir)libs\libs\Zydis\msvc\zydis\obj\Zydis-Win32-Release MT\Zydis.pdb" "$(ProjectDir)libs\libs\Zydis.pdb"</Command>
+    </PreBuildEvent>
   </ItemDefinitionGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
