@@ -24,6 +24,7 @@ Hello. This loader loads and initializes onetap crack in the CS:GO game.
      * Make sure you have the latest version of OTC. 
      * If you inject an addon then try without it, very often it causes crashes.
      * Injector problems are also possible. (Try use process hacker)
+     * p.s Injection through crashhandler spoofing can also cause crashes.
 
   * I found this repository, but can't find OneTap source code.
     * Right. This is just a loader, that initializes & patch & invoke a binary file in game memory. You can watch/patch file [**here**](https://github.com/0x000cb/otc/blob/master/OTC/cpp/segment/Segment.cpp).
