@@ -51,7 +51,7 @@ void PanicUtils::Release (Layers layer, const char* reason) {
 
     log.SwitchedInfo("_Panic");
     log.SwitchedInfo("If you see this message: OTC cannot find a way out of the situation.");
-    log.SwitchedInfo("Log may at desktop folder.");
+    log.SwitchedInfo("Log may at document folder.");
     log.Info (stream.str().c_str());
 
     if (!Segment::UnsafeLibraryPointer) {
