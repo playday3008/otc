@@ -8,9 +8,7 @@ Hello. This loader loads and initializes onetap crack in the CS:GO game.
 
 # FAQ
   * How clone this repository?
-     * git clone https://github.com/0x000cb/otc.git 
-     * cd otc
-     * git submodule update --init --recursive
+     * ``` git clone https://github.com/0x000cb/otc.git  && cd otc && git submodule update --init --recursive ```
 
   * Everything worked out, but when i inject onetap, menu it does not render.
      * Enable multi-threaded rendering (in csgo) and then inject OTC. 
@@ -24,10 +22,11 @@ Hello. This loader loads and initializes onetap crack in the CS:GO game.
      * Make sure you have the latest version of OTC. 
      * If you inject an addon then try without it, very often it causes crashes.
      * Injector problems are also possible. (Try use process hacker)
-     * p.s Injection through crashhandler spoofing can also cause crashes.
+     > p.s Injection through crashhandler spoofing can also cause crashes.
 
   * I found this repository, but can't find OneTap source code.
-    * Right. This is just a loader, that initializes & patch & invoke a binary file in game memory. You can watch/patch file [**here**](https://github.com/0x000cb/otc/blob/master/OTC/cpp/segment/Segment.cpp).
+    * Right. This is just a loader, that initializes & patch & invoke a binary file in game memory. 
+    * You can watch/patch file [**here**](https://github.com/0x000cb/otc/blob/master/OTC/cpp/segment/Segment.cpp).
 
   * How update signatures, index's, and netvars?
 
@@ -48,11 +47,12 @@ Hello. This loader loads and initializes onetap crack in the CS:GO game.
         * Just change the second argument in the structure to the current value. It's all. (Recommend use: hazedumper)
 -----------------------------------------------------
 
- # TODO
+ # TODO (Issues)
 
+  - [ ] Random crash caused triggerbot/backtrack. ([#1](https://github.com/0x000cb/otc/issues/1), [#20](https://github.com/0x000cb/otc/issues/20))
   - [ ] Buy-Bot. ([#3](https://github.com/0x000cb/otc/issues/3), [#8](https://github.com/0x000cb/otc/issues/8))
-  - [ ] Binds (Key-non-trigger).
-  - [ ] Animations (Chams) ([#8](https://github.com/0x000cb/otc/issues/8)).
+  - [ ] Binds. (Key-non-trigger)
+  - [ ] Animations. (Chams) ([#8](https://github.com/0x000cb/otc/issues/8))
   
 -----------------------------------------------------
 
