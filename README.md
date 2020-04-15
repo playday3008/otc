@@ -49,7 +49,7 @@ Hello. This loader loads and initializes onetap crack in the CS:GO game.
 
  # TODO (Issues)
 
-  - [ ] Random crash caused triggerbot/backtrack. ([#1](https://github.com/0x000cb/otc/issues/1), [#20](https://github.com/0x000cb/otc/issues/20))
+  - [x] Random crash caused triggerbot/backtrack. ([#1](https://github.com/0x000cb/otc/issues/1), [#20](https://github.com/0x000cb/otc/issues/20))
   - [ ] Buy-Bot. ([#3](https://github.com/0x000cb/otc/issues/3), [#8](https://github.com/0x000cb/otc/issues/8))
   - [ ] Binds. (Key-non-trigger)
   - [ ] Animations. (Chams) ([#8](https://github.com/0x000cb/otc/issues/8))
