@@ -48,8 +48,7 @@ Hello. This loader loads and initializes onetap crack in the CS:GO game.
 -----------------------------------------------------
 
  # TODO (Issues)
-
-  - [ ] TriggerBot. ([#24](https://github.com/0x000cb/otc/issues/24))
+ 
   - [ ] Buy-Bot. ([#3](https://github.com/0x000cb/otc/issues/3), [#8](https://github.com/0x000cb/otc/issues/8))
   - [ ] Binds. (Key-non-trigger)
   - [ ] Animations. (Chams) ([#8](https://github.com/0x000cb/otc/issues/8))
