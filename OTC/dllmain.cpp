@@ -90,10 +90,6 @@ BOOL APIENTRY DllMain(HMODULE module, DWORD callReason, LPVOID lpReserved) {
         //Llama killed my wife for internet connecshion, pleace don't remove this. <3
         logger.Info ("To express gratitude (Bitcoin): bc1qjsjmddxegh2a0nys7czn2qztuzq8g6nwk743vg.");
         logger.Space ();
-        //True.
-        logger.Info ("Leaks/Cheats/Configs: https://www.yougame.biz."); 
-        logger.Info ("Important: This is not an advertisement. You can find me there online 24/7. Username: 0x000cb");
-        logger.Space ();
 
         logger.Info ("- - - - - - - - - - - - O N E T A P <-> L O A D E R - - - - - - - - - - - -");
         logger.Space ();

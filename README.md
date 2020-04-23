@@ -13,7 +13,11 @@ Hello. This loader loads and initializes onetap crack in the CS:GO game.
   * Everything worked out, but when i inject onetap, menu it does not render.
      * Enable multi-threaded rendering (in csgo) and then inject OTC. 
      * If everything still does not work before, add a flag to disable d3x9 in the CS: GO startup parameters.
-  
+
+  * I inject otc into the game but it freezes and doesn't respond. ```(And also the consumption of processor resources is reduced to 2-3%)```
+    * Try to open the console before the injection. The problem most often lies in the injector.
+    > p.s This issue is observed on Windows prior to version 10.
+
   * When you already fix what I need so much ??? I can’t play without it !!! (There should be a function name without which you cannot play)
      * First of all, we try to solve the most important problems. 
      * In TODO, you can see the order in which work is currently being performed.
@@ -53,6 +57,13 @@ Hello. This loader loads and initializes onetap crack in the CS:GO game.
   - [ ] Binds. (Key-non-trigger)
   - [ ] Animations. (Chams) ([#8](https://github.com/0x000cb/otc/issues/8))
   
+-----------------------------------------------------
+
+ # New update info
+  - [x] Custom cheat name in watermark.
+  - [x] Custom cheat name in menu.
+  - [ ] Dev fun tools. 
+
 -----------------------------------------------------
 
 # Last build
