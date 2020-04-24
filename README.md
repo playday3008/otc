@@ -62,6 +62,7 @@ Hello. This loader loads and initializes onetap crack in the CS:GO game.
  # New update info
   - [x] Custom cheat name in watermark.
   - [x] Custom cheat name in menu.
+  - [x] Rework enable log.
   - [ ] Dev fun tools. 
 
 -----------------------------------------------------
