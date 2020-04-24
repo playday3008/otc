@@ -1,18 +1,18 @@
 #include "../../framework.h"
 
-void SegmentFramework::CreateInfoTable () {
+void SegmentFramework::CreateDependencyTable() {
 
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     // We use this as a temporary storage. (The compiler will replace the vector with an array)                                                                  //
     //                                                                                                                                                           //
-       std::vector<DWORD> info;                                                                                                                                  //
+       std::vector <DWORD> info;                                                                                                                                 //
     //                                                                                                                                                           //
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     //                                                                                                                                                           //  
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     // Some function in steam client. idk.                                                                                                                       //
     //                                                                                                                                                           //
-       info.emplace_back(reinterpret_cast<DWORD> (Utils::GetModule("steamclient.dll") + Links::LIBRARY));                                                        //
+       info.emplace_back (reinterpret_cast<DWORD> (Utils::GetModule("steamclient.dll") + Links::LIBRARY));                                                       //
     //                                                                                                                                                           //
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     //                                                                                                                                                           //
@@ -34,7 +34,7 @@ void SegmentFramework::CreateInfoTable () {
     //                                                                                                                                                           //
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     // And so, consider everything in order. Here we move the finished table to the allocated segment memory.                                                    //
-    // Onetap has a function that automatically takes information from the allocated memory because it knows what will be there: "Nickname, libraries, Offsets." //
+    // Onetap has a function that automatically takes information from the allocated memory because it knows what will be there: "Libraries, Offsets."           //
     // Since the original loader loads there as we do.                                                                                                           //
     //                                                                                                                                                           //
     // What is the number 0x20 and why is it here? The function starts reading data (base addresses, offsets) starting from: Base address + offset by 0x20 bytes //
@@ -43,28 +43,20 @@ void SegmentFramework::CreateInfoTable () {
         std::memmove (reinterpret_cast<DWORD*> (Segment::GetSafeAllocationPointer () + 0x20), reinterpret_cast<PVOID> (info.data()), Links::TABLE);              //
     //                                                                                                                                                           //
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    //                                                                                                                                                           //
-    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    // We move the username to the start of the segment since the function reads the username first, then the libraries, then the offsets.                       //
-    //                                                                                                                                                           //
-    // What is the offset 0x1 ? If the internal OneTap function reads the first byte and it turns out to be non - zero - crash.                                  //
-    //                                                                                                                                                           //
-    // What is the value 0x20 ? This is the maximum nickname length. 0x20 translated from hex to dec - This is 32 characters.                                    //
-    //                                                                                                                                                           //
-        std::memmove (reinterpret_cast<DWORD*> (Segment::GetSafeAllocationPointer () + 0x1), getenv ("USERNAME"), 0x20);                                         //
-    //                                                                                                                                                           //
-    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 }
 
 void SegmentFramework::UpdateNetVars () {
+
     //Netvars are offsets to parent variables in valve sdk.
     for (const auto& netvar : m_netvars) {
         *reinterpret_cast<DWORD*> (Segment::GetSafeAllocationPointer () + netvar.rva) = netvar.new_value;
     }
+
 }
 
 void SegmentFramework::CreateHook () {
+
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     // We create a hook to prevent a crash due to incorrect indexes, but first, let's look at everything in order.                                                                   //
     //                                                                                                                                                                               //
@@ -79,17 +71,85 @@ void SegmentFramework::CreateHook () {
     // In order not to patch a binary file every time, creating a hook is the simplest solution.                                                                                     //
     // (And it gets even easier with HookLib. More details: https://www.github.com/HoShiMin/HookLib)                                                                                 //                                                                                         
     //                                                                                                                                                                               //
-      SetHook(reinterpret_cast<PVOID> (Segment::GetSafeAllocationPointer () + Links::HOOK), &CustomVirtualCaller, reinterpret_cast<PVOID*> (&OriginalVirtualFunctionCaller));         //
+      SetHook (reinterpret_cast<PVOID> (Segment::GetSafeAllocationPointer () + Links::HOOK), &CustomVirtualCaller, reinterpret_cast<PVOID*> (&OriginalVirtualFunctionCaller));       //
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 }
 
 int SegmentFramework::CustomVirtualCaller (int* vTable, int index) {
+
     //Last index update you can found on UC. (https://www.unknowncheats.me/forum/counterstrike-global-offensive/310246-updates-megathread.html)
+
 	if (index >= 89) {
+
 		index += 2;
+
 		if (index >= 256) index++;
 		if (index >= 300) index += 2;
 		if (index >= 300) index++;
+
 	}
+
 	return SegmentFramework::OriginalVirtualFunctionCaller (vTable, index);
+
+}
+
+void SegmentFramework::UpdateWatermark (const char* waterName, const char* playerName) {
+
+    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    // Create new char array for update instructions.                                                                                                            //
+    //                                                                                                                                                           //
+    // Why 16? Because in watermark only 4 mov instructions with 4 bytes in argument. 4 * 4 = 16.                                                                //
+    //                                                                                                                                                           //
+       char compressedWatermark[16];                                                                                                                             //
+    //                                                                                                                                                           //
+    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    // Copy watermark name to compressed array with custom size.                                                                                                 //
+    //                                                                                                                                                           //
+       std::strncpy(compressedWatermark, waterName, 16);                                                                                                         //
+    //                                                                                                                                                           //
+    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    // All arguments docs inside func.                                                                                                                           //
+    //                                                                                                                                                           //
+       Utils::UpdateInstructionCharArgument (Segment::GetSafeAllocationPointer(), compressedWatermark, Links::BOX_WATERMARK,  0x0, 0x1C, 0x7, 0x4, 0x0, 0x4);    //
+    //                                                                                                                                                           //
+    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    // We move the username to the start of the segment since the function reads the username first, then the libraries, then the offsets.                       //
+    //                                                                                                                                                           //
+    // What is the offset 0x1 ? If the internal OneTap function reads the first byte and it turns out to be non - zero - crash.                                  //
+    //                                                                                                                                                           //
+    // What is the value 0x20 ? This is the maximum nickname length. 0x20 translated from hex to dec - This is 32 characters.                                    //
+    //                                                                                                                                                           //
+       std::memmove (reinterpret_cast<DWORD*> (Segment::GetSafeAllocationPointer() + 0x1), playerName, 0x20);                                                    //
+    //                                                                                                                                                           //
+    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  
+}
+
+void SegmentFramework::UpdateMenuWatermark (const char* waterName) {
+
+    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    // Create new char array for update instructions.                                                                                                            //
+    //                                                                                                                                                           //
+    // Why 12? Because in watermark only 3 mov instructions with 4 bytes in argument. 4 * 3 = 12.                                                                //
+    //                                                                                                                                                           //
+       char compressedWatermark [12];                                                                                                                            //
+    //                                                                                                                                                           //
+    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    // Copy watermark name to compressed array with custom size.                                                                                                 //
+    //                                                                                                                                                           //
+       std::strncpy (compressedWatermark, waterName, 12);                                                                                                        //
+    //                                                                                                                                                           //
+    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    // All arguments info inside func.                                                                                                                           //
+    //                                                                                                                                                           //
+       Utils::UpdateInstructionCharArgument (Segment::GetSafeAllocationPointer(), compressedWatermark, Links::MENU_WATERMARK, 0x0, 0x15, 0x7, 0x4, 0x0, 0x4);    //
+    //                                                                                                                                                           //
+    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+}
+
+void SegmentFramework::SetMenuStatus (bool status) {
+    //P.S You can write your own function to open the menu using your own key.
+    *reinterpret_cast<DWORD*> (Segment::GetSafeAllocationPointer() + Links::MENU_STATUS) = status;
 }

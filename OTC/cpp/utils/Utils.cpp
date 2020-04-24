@@ -117,3 +117,14 @@ void Utils::FindOffsetsToVec (const char* module, std::vector<const char*> signa
     }
 
 }
+
+void Utils::UpdateInstructionCharArgument (DWORD base, char compressedArray[], int offsetToInstructions, int instructionIteratorBase, int instructionCount, int iterationCycleUpdate, int instructionCharMoveCount, int arrayCharIteratorBase, int arrayCharCycleUpdate) {
+
+    int segmentedCharIterator = arrayCharIteratorBase;
+
+    for (int instructionsIterator = instructionIteratorBase; instructionsIterator < instructionCount; instructionsIterator += iterationCycleUpdate) {
+        std::memcpy(reinterpret_cast <DWORD*> (base + offsetToInstructions + instructionsIterator), compressedArray + segmentedCharIterator, instructionCharMoveCount);
+        segmentedCharIterator += arrayCharCycleUpdate;
+    }
+
+}

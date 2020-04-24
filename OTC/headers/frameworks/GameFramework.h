@@ -40,7 +40,7 @@ public:
         //New line for formating.
         PrintNewLineToConsole ();
         //"Timer" stonks.
-        Sleep (0x40);
+        Sleep (0x90);
         return m_PrintInterface;
     }
 

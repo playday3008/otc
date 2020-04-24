@@ -49,50 +49,104 @@ BOOL APIENTRY DllMain(HMODULE module, DWORD callReason, LPVOID lpReserved) {
 
         PanicUtils::SetImportant (&Segment::UnsafeLibraryPointer, reinterpret_cast<DWORD> (module));
 
-        logger.Info ("- - - - - - - - - - - - O N E T A P <-> L O A D E R - - - - - - - - - - - -");
+        //Logo.
+        logger.Info ("MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM");
+        logger.Info ("MMMMMMMMMMMMMMMWNXKKKKXNWMMMMMMMMMMMMMMM");
+        logger.Info ("MMMMMNKNMMMWKOxdollllllodxOKWMMMMMMMMMMM");
+        logger.Info ("MMMMNOdONNOdlcclllloooooollloONMMMMMMMMM");
+        logger.Info ("MMMMMNXN0occcllooooooooooooolco0WMMMMMMM");
+        logger.Info ("MMMMMMWOccclooooooooooooollooolcOWMMMMMM");
+        logger.Info ("MMMMMM0lccloooooooooooolokxoloocl0MMMMMM");
+        logger.Info ("MMMMMWdcccooooloooooooolokkolooocdNMMMMM"); 
+        logger.Info ("MMMMMXocllooolldolooooooollooooocoNMMMMM");
+        logger.Info ("MMMMMNdcoooooooloooolllllooooooocdNMMMMM");
+        logger.Info ("MMMMMM0clooooooooooollllloooooolc0MMMMMM");
+        logger.Info ("MMMMMMWkcloooooooooooooooooooolckNWMMMMM");
+        logger.Info ("MMMMMMMWOlcllllllllllllllllllclOX0kKWMMM");
+        logger.Info ("MMMMMMMMMKl:llllllllllllllll:lKWNOkKWMMM");
+        logger.Info ("MMMMMMMNOdlldddddddddddxxxxxoldONMWMMMMM");
+        logger.Info ("MMMMMMXd:clllllllllllllooodoolc:dXMMMMMM");
+        logger.Info ("MMMMMNd;ccccccccccccccccccllcccc;dNMMMMM");
+        logger.Info ("MMMMMWOxxxxxxxxxxxxxxxxxxxxxxxxxxOWMMMMM");
+        logger.Info ("MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM");
+        logger.Info ("MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM");
+        
         logger.Space ();
-        logger.Info ("[RUNTIME] Extracting segment to memory....");
+
+        logger.Info ("Welcome to OTC Loader.");
+
+        logger.Space (2);
+
+        logger.Info ("| [~] Extracting segment to memory....");
 
         runtime.ExtractSegment();
         
-        logger.Info ("[RUNTIME] Segment extracted.");
-        logger.Info ("[RUNTIME] Reconstructing hot-points...");
+        logger.Info ("| [~] Reconstructing hot-points...");
 
         runtime.ReconstructHotPoints();
         
-        logger.Info ("[RUNTIME] Hot-points reconstructed.");
-        logger.Info ("[RUNTIME] Wait until the framework complete routine work...");
-        logger.Space ();
+        logger.Info ("| [+] Wait until the framework complete routine work...");
+        logger.Info ("| [~] Filling the dependency table... (~7-15 sec)");
 
-        logger.Info ("[FRAMEWORK] Filling the internal table... [Libs, Offsets] (~7-15 sec)");
+        segment.GetFramework().CreateDependencyTable ();
 
-        segment.GetFramework().CreateInfoTable ();
-
-        logger.Info ("[FRAMEWORK] Table filled.");
-        logger.Info ("[FRAMEWORK] Updating netvars...");
+        logger.Info ("| [~] Updating netvars...");
 
         segment.GetFramework().UpdateNetVars();
 
-        logger.Info ("[FRAMEWORK] Netvars updated.");
-        logger.Info ("[FRAMEWORK] Creating hook for internal function...");
+        logger.Info ("| [~] Creating hook for internal function...");
 
         segment.GetFramework().CreateHook();
 
-        logger.Info ("[FRAMEWORK] All completed.");
-        logger.Space ();
-        logger.Info ("[RUNTIME] Invoking OEP...");
+        logger.Info ("| [~] Updating watermark...");
+
+        //TODO: Waiting you beatiful name.
+        segment.GetFramework().UpdateWatermark ("Powered by OTC", getenv ("USERNAME"));
+        segment.GetFramework().UpdateMenuWatermark ("Nightly IO ");
+
+        logger.Info ("| [~] Invoking OEP...");
        
+        //Make segment alive.
         runtime.InvokeOEP();
 
-        logger.Info ("[RUNTIME] OEP invoked.");
-        logger.Space ();
-            
-        //Llama killed my wife for internet connecshion, pleace don't remove this. <3
-        logger.Info ("To express gratitude (Bitcoin): bc1qjsjmddxegh2a0nys7czn2qztuzq8g6nwk743vg.");
-        logger.Space ();
+        //Hide menu for better log look.
+        segment.GetFramework().SetMenuStatus (false);
 
-        logger.Info ("- - - - - - - - - - - - O N E T A P <-> L O A D E R - - - - - - - - - - - -");
+        logger.Info ("| [+] OTC initialized.");
+
         logger.Space ();
+       
+        logger.Info ("+--------+-----------------------------------+");
+        logger.Info ("| Loader |                                   |");
+        logger.Info ("|--------+                                   |");
+        logger.Info ("|                                            |");
+        logger.Info ("| 0x000cb - Project creator & reverse staff. |");
+        logger.Info ("| HoShiMin - Legacy & Native help.           |");
+        logger.Info ("| playday3008 - Help with github stuff.      |");
+        logger.Info ("|--------------------------------------------|");
+        logger.Info ("|                                            |");
+        logger.Info ("|-------+------------------------------------|");
+        logger.Info ("| Crack |                                    |");
+        logger.Info ("|-------+                                    |");
+        logger.Info ("|                                            |");
+        logger.Info ("| toast - module dumper.                     |");
+        logger.Info ("| wzn   - module reconstruction.             |");
+        logger.Info ("| d3x   - disassembly & advice.              |");
+        logger.Info ("| 0x000cb - Current reverse & patch staff.   |");
+        logger.Info ("|--------------------------------------------|");
+        logger.Info ("|                                            |");
+        logger.Info ("|---------+----------------------------------|");
+        logger.Info ("|  About  |                                  |");
+        logger.Info ("|---------+                                  |");
+        logger.Info ("|                                            |");
+        logger.Info ("| Github repo - www.github.com/0x000cb/otc   |");
+        logger.Info ("| Configs - www.yadi.sk/d/KZNcRdMSheLTfw     |");
+        logger.Info ("|--------------------------------------------|");
+        logger.Info ("| Donate (BTC):                              |");
+        logger.Info ("| bc1qjsjmddxegh2a0nys7czn2qztuzq8g6nwk743vg |");
+        logger.Info ("+--------------------------------------------+");
+
+        logger.Space (2);
 
     }
 
