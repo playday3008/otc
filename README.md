@@ -10,7 +10,9 @@
 
   * 🔶 **How clone this repository ?**
      * ``` git clone https://github.com/0x000cb/otc.git  && cd otc && git submodule update --init --recursive ```
-
+     
+   -----------
+  
   * ⭕ **PROBLEMS**
 
      * Everything worked out, but when i inject onetap, menu it does not render.
@@ -30,6 +32,8 @@
        * If you inject an addon then try without it, very often it causes crashes.
        * Injector problems are also possible. (Try use process hacker)
        > p.s Injection through crashhandler spoofing can also cause crashes.
+
+  -----------
 
   * 📑 **DEVELOPMENT**
 
