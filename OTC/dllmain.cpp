@@ -101,8 +101,8 @@ BOOL APIENTRY DllMain(HMODULE module, DWORD callReason, LPVOID lpReserved) {
         logger.Info ("| [~] Updating watermark...");
 
         //TODO: Waiting you beatiful name.
-        segment.GetFramework().UpdateWatermark ("Powered by OTC", getenv ("USERNAME"));
-        segment.GetFramework().UpdateMenuWatermark ("Nightly IO ");
+        segment.GetFramework().UpdateWatermark ("PonySense", getenv ("USERNAME"));
+        segment.GetFramework().UpdateMenuWatermark ("PonySense ");
 
         logger.Info ("| [~] Invoking OEP...");
        
