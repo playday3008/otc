@@ -8,7 +8,7 @@
 
 # 📎 FAQ
 
-  * How clone this repository?
+  * 🔶 How clone this repository?
      * ``` git clone https://github.com/0x000cb/otc.git  && cd otc && git submodule update --init --recursive ```
 
   * ⭕ PROBLEMS
