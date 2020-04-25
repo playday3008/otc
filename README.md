@@ -8,10 +8,10 @@
 
 # 📎 FAQ
 
-  * 🔶 How clone this repository?
+  * 🔶 **How clone this repository ?**
      * ``` git clone https://github.com/0x000cb/otc.git  && cd otc && git submodule update --init --recursive ```
 
-  * ⭕ PROBLEMS
+  * ⭕ **PROBLEMS**
 
      * Everything worked out, but when i inject onetap, menu it does not render.
         * Enable multi-threaded rendering (in csgo) and then inject OTC. 
@@ -31,7 +31,7 @@
        * Injector problems are also possible. (Try use process hacker)
        > p.s Injection through crashhandler spoofing can also cause crashes.
 
-  * 📑 DEVELOPMENT
+  * 📑 **DEVELOPMENT**
 
      * I found this repository, but can't find OneTap source code.
        * Right. This is just a loader, that initializes & patch & invoke a binary file in game memory. 
