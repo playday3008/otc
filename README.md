@@ -35,11 +35,11 @@ Hello. This loader loads and initializes onetap crack in the CS:GO game.
   * How update signatures, index's, and netvars?
 
     * Signatures.
-       * Vector: [m_signatures](https://github.com/0x000cb/otc/blob/master/OTC/headers/frameworks/SegmentFramework.h#L78) 
+       * Vector: [m_signatures](https://github.com/0x000cb/otc/blob/master/OTC/headers/frameworks/SegmentFramework.h#L112) 
        * FAQ: [#12](https://github.com/0x000cb/otc/issues/12) 
 
     * Index's
-       * Function: [CustomVirtualCaller](https://github.com/0x000cb/otc/blob/master/OTC/cpp/frameworks/SegmentFramework.cpp#L86)
+       * Function: [CustomVirtualCaller](https://github.com/0x000cb/otc/blob/master/OTC/cpp/frameworks/SegmentFramework.cpp#L79)
        * You just need to go to unknowncheats, find out which index the rest have shifted from, and how much, and set this as a rule in the method.
        * Example:
            I know that indexes since 190 have shifted by 2.
@@ -47,7 +47,7 @@ Hello. This loader loads and initializes onetap crack in the CS:GO game.
            This will quickly and easily fix indexes.
 
      * Netvars:
-        * Vector: [m_netvars](https://github.com/0x000cb/otc/blob/master/OTC/headers/frameworks/SegmentFramework.h#L72)
+        * Vector: [m_netvars](https://github.com/0x000cb/otc/blob/master/OTC/headers/frameworks/SegmentFramework.h#L106)
         * Just change the second argument in the structure to the current value. It's all. (Recommend use: hazedumper)
 -----------------------------------------------------
 
@@ -60,8 +60,6 @@ Hello. This loader loads and initializes onetap crack in the CS:GO game.
 -----------------------------------------------------
 
  # New update info
-  - [x] Custom cheat name in watermark.
-  - [x] Custom cheat name in menu.
   - [ ] Dev fun tools. 
 
 -----------------------------------------------------

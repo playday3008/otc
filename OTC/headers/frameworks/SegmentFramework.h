@@ -18,7 +18,7 @@ public:
     * @param nick - Player nickname in watermark (!32 character limit!)
    **/
 
-   void CreateInfoTable ();
+   void CreateDependencyTable ();
 
    /**
     * It is necessary for the internal functions to work correctly. (More about netvars can be found on unknowncheats)
@@ -40,6 +40,31 @@ public:
 
    static int __fastcall CustomVirtualCaller (int* vTable, int index);
 
+   /**
+    * Update segment name and user name in internal render watermark.
+    *
+    * @param waterName - New segment name. (Limit - 16 symbols)
+    * @param playerName - New player name. (Limit - 32 symbols)
+    **/
+
+   void UpdateWatermark (const char* waterName, const char* playerName);
+
+   /**
+    * Update segment name in internal menu.
+    *
+    * @param waterName - New segment name. (Limit - 12 symbols)
+    **/
+
+   void UpdateMenuWatermark (const char* waterName);
+
+   /**
+    * Show/hide internal segment menu.
+    *
+    * @param status - true = show/false = hide.
+    **/
+
+   void SetMenuStatus (bool status);
+
 protected:
 
     //Netvars are offsets to parent variables in valve sdk.
@@ -52,12 +77,21 @@ protected:
 
     //Small variables.
     enum Links {
+
         //Unknown offset. Used for create info table.
         LIBRARY = 0x2A6900,
         //Info-table in memory size. (Value taken from segment-side function)
         TABLE = 0x18C,
-        //Offsets to hook function in memory.
-        HOOK = 0x3B30
+        //Offset to hook function in memory.
+        HOOK = 0x3B30,
+
+        //Offset to first argument in segment mov instruction.
+        BOX_WATERMARK = 0x12D381,
+        //Offset to first argument in segment mov instruction.
+        MENU_WATERMARK = 0xE025F,
+
+        //Offset to boolean for show/hide internal menu segment.
+        MENU_STATUS = 0x485F67
     };
     
     //Used for fill info table. (More about this libs: SegmentFramework.cpp)

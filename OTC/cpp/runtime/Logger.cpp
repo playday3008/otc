@@ -7,7 +7,7 @@ void Logger::Setup () {
 
 	if (m_Type == CONSOLE) {
 		if (!m_Game.m_IsInterfacesAvailable) PanicUtils::Release (PanicUtils::Layers::INIT, "GameInterfaces is null. Can't initialize the logger.");
-		m_Game.AtConsoleInterface () (NULL, "log_color General 0xFFFFFFFF; showconsole; clear");
+		m_Game.AtConsoleInterface () (NULL, "showconsole; log_color General 0xFFFFFFFF; clear");
 	}
 
 }

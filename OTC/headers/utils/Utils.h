@@ -42,4 +42,20 @@ public:
 
     static void FindOffsetsToVec (const char* module, std::vector<const char*> signatures, std::vector<DWORD>& vector, bool isPanic = false);
 
+    /**
+     * Update instruction argument with char array.
+     * 
+     * @param base - Module base address.
+     * @param compressedArray - Char array with limited length.
+     * @param offsetToInstructions - Instruct offset. (Base address + offsetToInstruct = InstructionArgumentStartPos)
+     * @param instructionIteratorBase - Iterator offset base. (Base address + offsetToInstruct + instructionIterator = Next instruction)
+     * @param instructionCount - Next instruction count. (InstructionSize * Count = InstructionCount)
+     * @param iterationCycleUpdate - Iterator sum update. (Iteration += InstructionSize)
+     * @param instructionCharMoveCount - Count symbols move from array to instruction argument. (Example: For mov instruction need 0x4 bytes)
+     * @param arrayCharIteratorBase - Start array pos.
+     * @param arrayCharCycleUpdate - Iterator sum update.
+     **/
+
+    static void UpdateInstructionCharArgument (DWORD base, char compressedArray[], int offsetToInstructions, int instructionIteratorBase, int instructionCount, int iterationCycleUpdate, int instructionCharMoveCount, int arrayCharIteratorBase, int arrayCharCycleUpdate);
+
 };
