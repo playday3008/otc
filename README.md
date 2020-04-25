@@ -74,7 +74,7 @@
 
  # 🔧 In plans | Development
  
-  - Add GUI (+ Runtime staff support).
+  - Add GUI. (+ Runtime staff support)
   - Rewrite with OOP + Only NativeAPI.
 
 -----------------------------------------------------
