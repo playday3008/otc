@@ -10,32 +10,17 @@
  *                           |---------------|
  *                    +++++> |  Relocations  | ======+
  * |---------|        |      |---------------|       |        |-------------------------------------------|         |---------------|       |---------------------------|
- * | Segment | =======+                              -======> | Reconstruct hotpoints with new base addr. | ======> | OWN FUNCTIONS | ====> | Call Original Entry Point |
+ * | Segment | =======+                              -======> | Reconstruct hotpoints with new base addr  | ======> | OWN FUNCTIONS | ====> | Call Original entry point |
  * |---------|        |      |---------------|       |        |-------------------------------------------|         |---------------|       |---------------------------|
  *                    +++++> |    Imports    | ======+
  *                           |---------------|
- *
- *
- *                                  +--------------------------------------------------------------+
- *                                 + ############################################################## +
- *                                + ################################################################ +
- *                               + [+----------------------------------------------------------------+] +
- *                            + # ]|[ #                      Dev - 0x000cb                         # ]|[ # +
- *                            + # ]|[ #       Telegram - t.me/array0 | Discord - 0xb00b1e5#0089    # ]|[ # +
- *                            + # ]|[ #   ------------------------------------------------------   # ]|[ # +
- *                            + # ]|[ #                   Legacy help - HoShiMin                   # ]|[ # +
- *                            + # ]|[ #                  Telegram - t.me/HoShiMin                  # ]|[ # +
- *                               + [+----------------------------------------------------------------+] +
- *                                 + ################################################################ +
- *                                  + ############################################################## +
- *                                   +--------------------------------------------------------------+
  *
  */
 
 //Scary but necessary.
 DWORD Segment::UnsafeAllocatedPointer = 0x0;
 DWORD Segment::UnsafeLibraryPointer = 0x0;
-SegmentFramework::VirtualFunctionCaller SegmentFramework::OriginalVirtualFunctionCaller = 0x0;
+SegmentFramework::oVirtualFunctionCaller SegmentFramework::OriginalVirtualCaller = 0x0;
 
 BOOL APIENTRY DllMain(HMODULE module, DWORD callReason, LPVOID lpReserved) {
 
@@ -49,28 +34,30 @@ BOOL APIENTRY DllMain(HMODULE module, DWORD callReason, LPVOID lpReserved) {
 
         PanicUtils::SetImportant (&Segment::UnsafeLibraryPointer, reinterpret_cast<DWORD> (module));
 
-        //Logo.
-        logger.Info ("MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM");
-        logger.Info ("MMMMMMMMMMMMMMMWNXKKKKXNWMMMMMMMMMMMMMMM");
-        logger.Info ("MMMMMNKNMMMWKOxdollllllodxOKWMMMMMMMMMMM");
-        logger.Info ("MMMMNOdONNOdlcclllloooooollloONMMMMMMMMM");
-        logger.Info ("MMMMMNXN0occcllooooooooooooolco0WMMMMMMM");
-        logger.Info ("MMMMMMWOccclooooooooooooollooolcOWMMMMMM");
-        logger.Info ("MMMMMM0lccloooooooooooolokxoloocl0MMMMMM");
-        logger.Info ("MMMMMWdcccooooloooooooolokkolooocdNMMMMM"); 
-        logger.Info ("MMMMMXocllooolldolooooooollooooocoNMMMMM");
-        logger.Info ("MMMMMNdcoooooooloooolllllooooooocdNMMMMM");
-        logger.Info ("MMMMMM0clooooooooooollllloooooolc0MMMMMM");
-        logger.Info ("MMMMMMWkcloooooooooooooooooooolckNWMMMMM");
-        logger.Info ("MMMMMMMWOlcllllllllllllllllllclOX0kKWMMM");
-        logger.Info ("MMMMMMMMMKl:llllllllllllllll:lKWNOkKWMMM");
-        logger.Info ("MMMMMMMNOdlldddddddddddxxxxxoldONMWMMMMM");
-        logger.Info ("MMMMMMXd:clllllllllllllooodoolc:dXMMMMMM");
-        logger.Info ("MMMMMNd;ccccccccccccccccccllcccc;dNMMMMM");
-        logger.Info ("MMMMMWOxxxxxxxxxxxxxxxxxxxxxxxxxxOWMMMMM");
-        logger.Info ("MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM");
-        logger.Info ("MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM");
-        
+        //Logo. 
+        logger.Info ("MMMMMMMMMMWKkdoooooooooooodkKWMMMMMMMMMM");
+        logger.Info ("MMMMMMMMW0oldkKXNNNXXNNNXKkdloONMMMMMMMM");
+        logger.Info ("MMMMMMWKolxKNNNWNkooookNWNNNKxlo0WMMMMMM");
+        logger.Info ("MMMMMWOcoKNNOooooldkkdlooooONNKockWMMMMM");
+        logger.Info ("MMMMM0coXWM0::xdoooooooodx::0MWXdcOWMMMM");
+        logger.Info ("MMMMNocKWWNx : oxcloolloolcxd:xNWWKcoXMM");
+        logger.Info ("MMMM0cdNMKl : dkclxccodclxlckd:lKMNdc0MM");
+        logger.Info ("MMMM0cdNM0c : xkcoxclddlcxockx:c0MNdc0MM");
+        logger.Info ("MMMMXllXMN0o : dxcloolloolcxd:o0NMXllXMM");
+        logger.Info ("MMMMWkcxWMWO : ckxolooooooxkc:OWMWx:kWMM");
+        logger.Info ("MMMMMXxcxNMXdclllldOOdllllldXMNxcdXMMMMM");
+        logger.Info ("MMMMMWNkco0NNKKK0ocllco0KKKNN0olkXWMMMMM");
+        logger.Info ("MMMMMMWNKxlokKNWWNK00KNWWNKkolxKNWMMMMMM");
+        logger.Info ("MMMMMMMMWNKkdlo0XXXXXXXXOoldkKNWMMMMMMMM");
+        logger.Info ("MMMMMMMMMMWWN0l; lddddddl; l0NWWMMMMMMMM");
+        logger.Info ("MMMMMMMMMMMMMNx; cooooooc; xWMMMMMMMMMMM");
+        logger.Info ("MMMMMMMMMMMMMWx, :llllll:, xWMMMMMMMMMMM");
+        logger.Info ("MMMMMMMMMMMMMWk; , looool;; kWMMMMMMMMMM");
+        logger.Info ("MMMMMMMMMMMMMMNxc : cllc:cxXMMMMMMMMMMMM");
+        logger.Info ("MMMMMMMMMMMMMMMW0o : cc:o0NWMMMMMMMMMMMM");
+        logger.Info ("MMMMMMMMMMMMMMMMWNK00KNWMMMMMMMMMMMMMMMM");
+        logger.Info ("MMMMMMMMMMMMMMMMMMWWWWMMMMMMMMMMMMMMMMMM");
+
         logger.Space ();
 
         logger.Info ("Welcome to OTC Loader.");
@@ -100,9 +87,10 @@ BOOL APIENTRY DllMain(HMODULE module, DWORD callReason, LPVOID lpReserved) {
 
         logger.Info ("| [~] Updating watermark...");
 
-        //TODO: Waiting you beatiful name.
-        segment.GetFramework().UpdateWatermark ("Powered by OTC", getenv ("USERNAME"));
-        segment.GetFramework().UpdateMenuWatermark ("Nightly IO ");
+        //TODO: Waiting your beatiful name.
+        //README: !!getenv it's a function!!. Please read docs before edit and ask questions.
+        segment.GetFramework().UpdateWatermark (getenv ("USERNAME"), "github.com/0x000cb/otc");
+        segment.GetFramework().UpdateMenuWatermark ("Assembled ");
 
         logger.Info ("| [~] Invoking OEP...");
        
@@ -139,8 +127,7 @@ BOOL APIENTRY DllMain(HMODULE module, DWORD callReason, LPVOID lpReserved) {
         logger.Info ("|  About  |                                  |");
         logger.Info ("|---------+                                  |");
         logger.Info ("|                                            |");
-        logger.Info ("| Github repo - www.github.com/0x000cb/otc   |");
-        logger.Info ("| Configs - www.yadi.sk/d/KZNcRdMSheLTfw     |");
+        logger.Info ("| Source code - www.github.com/0x000cb/otc   |");
         logger.Info ("|--------------------------------------------|");
         logger.Info ("| Donate (BTC):                              |");
         logger.Info ("| bc1qjsjmddxegh2a0nys7czn2qztuzq8g6nwk743vg |");

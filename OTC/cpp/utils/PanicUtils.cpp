@@ -9,7 +9,7 @@ void PanicUtils::SetImportant (DWORD *variable, DWORD value, const char* reason)
     }
 }
 
-void PanicUtils::RequireNonNull(Layers layer, DWORD value, const char* reason) {
+void PanicUtils::RequireNonNull (Layers layer, DWORD value, const char* reason) {
     if (!value) {
         PanicUtils::Release(layer, reason);
     }
@@ -38,8 +38,6 @@ void PanicUtils::Release (Layers layer, const char* reason) {
         << "-----------------------------------------------------------" << "\n"
         << "[SEGMENT] Module: " << "0x" << std::uppercase << std::hex << Segment::UnsafeLibraryPointer << "\n"
         << "[SEGMENT] Allocation: " << "0x" << std::uppercase << std::hex << Segment::UnsafeAllocatedPointer << "\n"
-        << "-----------------------------------------------------------" << "\n"
-        << "[FRAMEWORK] Hook: " << "0x" << SegmentFramework::OriginalVirtualFunctionCaller << "\n"
         << "-----------------------------------------------------------"
         << "\n" << "\n"
         << "Send this log to the developer or try connecting a debugger and find out what the problem is." << "\n"
@@ -61,10 +59,6 @@ void PanicUtils::Release (Layers layer, const char* reason) {
 
     if (!Segment::UnsafeAllocatedPointer) {
         FreeLibraryAndExitThread (reinterpret_cast<HMODULE> (Segment::UnsafeLibraryPointer), NULL);
-    }
-
-    if (SegmentFramework::OriginalVirtualFunctionCaller) {
-        RemoveHook (SegmentFramework::OriginalVirtualFunctionCaller);
     }
 
     VirtualFree (reinterpret_cast<LPVOID> (Segment::UnsafeAllocatedPointer), NULL, MEM_RELEASE);

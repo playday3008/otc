@@ -12,7 +12,7 @@ class Segment {
 
 public:
 
-	//#SafeRuntime.
+	//Please use safe getters for get this variables.
 	static DWORD UnsafeAllocatedPointer;
 	static DWORD UnsafeLibraryPointer;
 
@@ -20,7 +20,7 @@ public:
 	 * Get allocation pointer. (Throws "exception" if pointer is null)
 	 **/
 
-	static DWORD GetSafeAllocationPointer() {
+	static DWORD GetSafeAllocationPointer () {
 		PanicUtils::RequireNonNull (PanicUtils::Layers::ROUTINE, UnsafeAllocatedPointer, "Allocation pointer is null.");
 		return UnsafeAllocatedPointer;
 	}
@@ -29,18 +29,18 @@ public:
 	 * Get current module pointer. (Throws "exception" if pointer is null)
 	 **/
 
-	static HMODULE GetSafeLibraryPointer() {
-		PanicUtils::RequireNonNull(PanicUtils::Layers::ROUTINE, UnsafeLibraryPointer, "Library pointer is null.");
+	static HMODULE GetSafeLibraryPointer () {
+		PanicUtils::RequireNonNull (PanicUtils::Layers::ROUTINE, UnsafeLibraryPointer, "Library pointer is null.");
 		return reinterpret_cast<HMODULE> (UnsafeLibraryPointer);
 	}
 
 	//Getters.
 
-	SegmentHeader GetHeader() {
+	SegmentHeader GetHeader () {
 		return m_Header;
 	}
 
-	SegmentFramework GetFramework() {
+	SegmentFramework GetFramework () {
 		return m_Framework;
     }
 

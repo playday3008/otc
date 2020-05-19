@@ -6,11 +6,10 @@ class SegmentFramework {
 
 public:
 
-   //Legacy segment function.
-   typedef int (__fastcall* VirtualFunctionCaller) (int* vTable, int index);
+    typedef UINT (__fastcall* oVirtualFunctionCaller)   (PVOID vTable, INT index);
 
-   //A variable that indicates the original function from the hook.
-   static VirtualFunctionCaller OriginalVirtualFunctionCaller;
+    //A variable that indicates the original function from the hook.
+    static oVirtualFunctionCaller OriginalVirtualCaller;
 
    /**
     * Used to initialize internal values ​​in segment. (About values: SegmentUtils.cpp)
@@ -21,41 +20,33 @@ public:
    void CreateDependencyTable ();
 
    /**
-    * It is necessary for the internal functions to work correctly. (More about netvars can be found on unknowncheats)
+    * Netvars updater. (More about netvars can be found on unknowncheats)
     **/
 
    void UpdateNetVars ();
 
    /**
-    * Intercept legacy function from the segment and replace it with your own. (About hook/lib: https://www.github.com/HoShiMin/HookLib)
+    * Intercept legacy functions from the segment and replace it with your own. (About hook/lib: https://www.github.com/HoShiMin/HookLib)
     **/
 
    void CreateHook ();
 
    /**
-    * It is necessary for the internal function work correctly.
-    *
-    * !Used to repair indexes that are broken. About vfunction: SegmentFramework.cpp#71
-    **/
-
-   static int __fastcall CustomVirtualCaller (int* vTable, int index);
-
-   /**
     * Update segment name and user name in internal render watermark.
     *
-    * @param waterName - New segment name. (Limit - 16 symbols)
+    * @param water - New watermarks name. (Limit - 16 symbols)
     * @param playerName - New player name. (Limit - 32 symbols)
     **/
 
-   void UpdateWatermark (const char* waterName, const char* playerName);
+   void UpdateWatermark (const char* water, const char* playerName);
 
    /**
     * Update segment name in internal menu.
     *
-    * @param waterName - New segment name. (Limit - 12 symbols)
+    * @param valye - New watermark name. (Limit - 12 symbols)
     **/
 
-   void UpdateMenuWatermark (const char* waterName);
+   void UpdateMenuWatermark (const char* value);
 
    /**
     * Show/hide internal segment menu.
@@ -65,10 +56,16 @@ public:
 
    void SetMenuStatus (bool status);
 
+   /**
+    * Used to repair indexes that are broken.
+    **/
+
+   static UINT __fastcall CustomVirtualCaller (PVOID vTable, INT index);
+
 protected:
 
     //Netvars are offsets to parent variables in valve sdk.
-    struct LegacyNetVar {
+    struct RelocatedNetVar {
         //Offset to variable. (Relocation - Old Base Address)
         int rva;
         //Set value.
@@ -76,25 +73,33 @@ protected:
     };
 
     //Small variables.
-    enum Links {
+    enum Datacase {
 
         //Unknown offset. Used for create info table.
-        LIBRARY = 0x2A6900,
+        LIBRARY_RVA = 0x2A6900,
         //Info-table in memory size. (Value taken from segment-side function)
-        TABLE = 0x18C,
+        TABLE_SIZE = 0x18C,
+
         //Offset to hook function in memory.
-        HOOK = 0x3B30,
+        VIRTUAL_EXECUTOR_RVA = 0x3B30,
 
         //Offset to first argument in segment mov instruction.
-        BOX_WATERMARK = 0x12D381,
+        BOX_WATERMARK_RVA = 0x12D381,
         //Offset to first argument in segment mov instruction.
-        MENU_WATERMARK = 0xE025F,
+        MENU_WATERMARK_RVA = 0xE025F,
 
         //Offset to boolean for show/hide internal menu segment.
-        MENU_STATUS = 0x485F67
+        MENU_STATUS_RVA = 0x485F67,
+
     };
-    
-    //Used for fill info table. (More about this libs: SegmentFramework.cpp)
+
+    //Used for fix segment.
+    std::vector<RelocatedNetVar> m_netvars = {
+        //m_bIsScoped. (Actual value: https://github.com/frk1/hazedumper/blob/master/csgo.cs#L32)
+        RelocatedNetVar { 0x95A250, 0x3914 }
+    };
+
+    //Used for dependency info table.
     std::vector<const char*> m_libraries = {
       "client_panorama.dll",
       "vguimatsurface.dll",
@@ -102,13 +107,7 @@ protected:
       "vstdlib.dll"
     };
 
-    //Used for fix segment. (More about netvars: SegmentFramework.cpp)
-    std::vector<LegacyNetVar> m_netvars = {
-        //m_bIsScoped. (Actual value: https://github.com/frk1/hazedumper/blob/master/csgo.cs#L32)
-        LegacyNetVar { 0x95A250, 0x3914 }
-    };
-
-    //Used for find offsets. (More about offsets: SegmentFramework.cpp)
+    //Used for find offsets.
     std::vector<const char*> m_signatures = {
        "55 8B EC 83 E4 F8 83 EC 70 6A 58", "56 6A 01 68 ? ? ? ? 8B F1", "55 8B EC 83 E4 F8 51 53 56 57 8B F1 E8 ? ? ? ? 8B 7D",
        "55 8B EC 83 E4 F8 83 EC 64 53 56 57 8B F1", "51 56 8B F1 85 F6 74 68 83", "55 8B EC 53 8B 5D 08 56 8B F1 83",
