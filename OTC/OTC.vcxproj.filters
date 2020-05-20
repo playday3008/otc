@@ -4,21 +4,6 @@
     <Filter Include="dev">
       <UniqueIdentifier>{a3939759-a051-412a-8acc-342fa251a4ee}</UniqueIdentifier>
     </Filter>
-    <Filter Include="dev\headers">
-      <UniqueIdentifier>{6aa01700-3721-46bf-a7ed-5f35706459be}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="dev\headers\frameworks">
-      <UniqueIdentifier>{7afd65b9-6f9d-4ded-91bb-07866730dc5f}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="dev\headers\runtime">
-      <UniqueIdentifier>{6a89d92a-2845-4d68-b85c-d6dde41f7f47}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="dev\headers\utils">
-      <UniqueIdentifier>{d8bd05c2-ca82-4751-aef1-6b3bea23eb19}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="dev\headers\segment">
-      <UniqueIdentifier>{a587430a-2380-44e1-950f-c68f30a417f4}</UniqueIdentifier>
-    </Filter>
     <Filter Include="dev\cpp">
       <UniqueIdentifier>{d0dd440f-4b41-49ee-a7df-a90d7f3fc962}</UniqueIdentifier>
     </Filter>
@@ -45,6 +30,21 @@
     </Filter>
     <Filter Include="dev\libs\objects">
       <UniqueIdentifier>{8949e53a-073f-4ea0-8844-6dba414858fd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="dev\hpp">
+      <UniqueIdentifier>{6aa01700-3721-46bf-a7ed-5f35706459be}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="dev\hpp\frameworks">
+      <UniqueIdentifier>{7afd65b9-6f9d-4ded-91bb-07866730dc5f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="dev\hpp\runtime">
+      <UniqueIdentifier>{6a89d92a-2845-4d68-b85c-d6dde41f7f47}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="dev\hpp\utils">
+      <UniqueIdentifier>{d8bd05c2-ca82-4751-aef1-6b3bea23eb19}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="dev\hpp\segment">
+      <UniqueIdentifier>{a587430a-2380-44e1-950f-c68f30a417f4}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -81,28 +81,28 @@
       <Filter>dev\libs\headers</Filter>
     </ClInclude>
     <ClInclude Include="headers\frameworks\SegmentFramework.h">
-      <Filter>dev\headers\frameworks</Filter>
+      <Filter>dev\hpp\frameworks</Filter>
     </ClInclude>
     <ClInclude Include="headers\frameworks\GameFramework.h">
-      <Filter>dev\headers\frameworks</Filter>
+      <Filter>dev\hpp\frameworks</Filter>
     </ClInclude>
     <ClInclude Include="headers\runtime\RuntimeHandler.h">
-      <Filter>dev\headers\runtime</Filter>
+      <Filter>dev\hpp\runtime</Filter>
     </ClInclude>
     <ClInclude Include="headers\runtime\Logger.h">
-      <Filter>dev\headers\runtime</Filter>
+      <Filter>dev\hpp\runtime</Filter>
     </ClInclude>
     <ClInclude Include="headers\segment\SegmentHeader.h">
-      <Filter>dev\headers\segment</Filter>
+      <Filter>dev\hpp\segment</Filter>
     </ClInclude>
     <ClInclude Include="headers\segment\Segment.h">
-      <Filter>dev\headers\segment</Filter>
+      <Filter>dev\hpp\segment</Filter>
     </ClInclude>
     <ClInclude Include="headers\utils\PanicUtils.h">
-      <Filter>dev\headers\utils</Filter>
+      <Filter>dev\hpp\utils</Filter>
     </ClInclude>
     <ClInclude Include="headers\utils\Utils.h">
-      <Filter>dev\headers\utils</Filter>
+      <Filter>dev\hpp\utils</Filter>
     </ClInclude>
     <ClInclude Include="framework.h">
       <Filter>dev</Filter>

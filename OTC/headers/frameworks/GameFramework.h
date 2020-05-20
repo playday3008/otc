@@ -6,23 +6,25 @@ class GameFramework {
 
 protected:
 
-    //Legacy. More about this stuff: https://www.unknowncheats.me/forum/counterstrike-global-offensive/190552-internal-printing-console-explanation.html
+    //Legacy.
 
     #define GAME_VIRTUAL_CONSOLE_INDEX 108 * 4
+    #define GAME_VIRTUAL_CLIENT_CMD_INDEX 114
 
-    typedef void* (*CreateInterfaceEngine) (const char* interfaceName, int* code);
-    typedef bool (__thiscall *ConsoleInterface)  (const void* caller, const char* command);
-    typedef void (*PrintConsoleInterface) (const char* message, ...);
+    //More about this stuff: https://www.unknowncheats.me/forum/counterstrike-global-offensive/190552-internal-printing-console-explanation.html
+    typedef PVOID (*oCreateInterfaceEngine)             (const char* interfaceName, PINT code);
+    typedef BOOL (__thiscall *oConsoleInterface)        (const void* caller, const char* command);
+    typedef VOID (*oPrintConsoleInterface)              (const char* message, ...);
 
-    PrintConsoleInterface m_PrintInterface = (PrintConsoleInterface) Utils::GetFunction ("tier0.dll", "Msg");
-    CreateInterfaceEngine m_CreateInterface = (CreateInterfaceEngine) Utils::GetFunction ("engine.dll", "CreateInterface");
+    oPrintConsoleInterface m_PrintInterface =  (oPrintConsoleInterface) Utils::GetFunction ("tier0.dll", "Msg");
+    oCreateInterfaceEngine m_CreateInterface = (oCreateInterfaceEngine) Utils::GetFunction ("engine.dll", "CreateInterface");
     PVOID m_VClientPointer = m_CreateInterface ("VEngineClient014", nullptr);
-    ConsoleInterface m_ConsoleInterface = (ConsoleInterface) * reinterpret_cast<int*> (*reinterpret_cast<int*> (m_VClientPointer) + GAME_VIRTUAL_CONSOLE_INDEX);
+    oConsoleInterface m_ConsoleInterface =     (oConsoleInterface) * reinterpret_cast<int*> (*reinterpret_cast<int*> (m_VClientPointer) + GAME_VIRTUAL_CONSOLE_INDEX);
 
 public:
 
     //Check non-null interfaces.
-    bool m_IsInterfacesAvailable = m_PrintInterface && m_CreateInterface && m_VClientPointer && m_ConsoleInterface;
+    BOOL m_IsInterfacesAvailable = m_PrintInterface && m_CreateInterface && m_VClientPointer && m_ConsoleInterface;
 
     /**
      * Simple send new line to console.
@@ -36,19 +38,12 @@ public:
      * Print message to game console.
      **/
 
-    GameFramework::PrintConsoleInterface AtPrintInterface () {
-        //New line for formating.
-        PrintNewLineToConsole ();
-        //"Timer" stonks.
-        Sleep (0x90);
-        return m_PrintInterface;
-    }
-
+    oPrintConsoleInterface PrintToConsole ();
     /**
      * Execute command at console.
      **/
 
-    GameFramework::ConsoleInterface AtConsoleInterface () {
+    oConsoleInterface AtConsoleInterface () {
         return m_ConsoleInterface;
     }
 
@@ -56,7 +51,7 @@ public:
      * Legacy method for create interfaces.
      **/
 
-    GameFramework::CreateInterfaceEngine AtCreateInterfaceEngine () {
+    oCreateInterfaceEngine AtCreateInterfaceEngine () {
         return m_CreateInterface;
     }
 

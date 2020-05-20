@@ -17,7 +17,7 @@ void Logger::Space (int count) {
 	switch (m_Type) {
 
 	    case CONSOLE:
-		   m_Game.PrintNewLineToConsole(count);
+		   m_Game.PrintNewLineToConsole (count);
 		  break;
 
 		case FILE:
@@ -33,7 +33,7 @@ void Logger::Info (const char* message...) {
 	switch (m_Type) {
 
 		case CONSOLE:
-		    m_Game.AtPrintInterface() (message);
+		    m_Game.PrintToConsole () (message);
 		   break;
 
 		case FILE:
@@ -44,7 +44,7 @@ void Logger::Info (const char* message...) {
 
 }
 
-void Logger::SwitchedInfo(const char* message...) {
+void Logger::SwitchedInfo (const char* message...) {
 	
 	switch (m_Type) {
 
@@ -53,7 +53,7 @@ void Logger::SwitchedInfo(const char* message...) {
 		  break;
 
 	   case FILE:
-		   m_Game.AtPrintInterface () (message);
+		   m_Game.PrintToConsole () (message);
 		  break;
 
 	}
