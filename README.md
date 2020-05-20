@@ -70,7 +70,6 @@
 
  # 💊 Issues
  
-  - [ ] Buy-Bot. ([#3](https://github.com/0x000cb/otc/issues/3), [#8](https://github.com/0x000cb/otc/issues/8))
   - [ ] Binds. (Key-non-trigger)
   - [ ] Animations. (Chams) ([#8](https://github.com/0x000cb/otc/issues/8))
   

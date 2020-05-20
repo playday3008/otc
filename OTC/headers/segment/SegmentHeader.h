@@ -11,7 +11,7 @@ public:
     typedef int (__stdcall* OEP_FUNCTION) (HMODULE hModule, DWORD callReason, LPVOID lpReserved);
     
     //Simple variables.
-    enum Links {
+    enum Datacase {
         //DOCS: https://www.jstage.jst.go.jp/article/transinf/E98.D/4/E98.D_2014EDP7268/_pdf
         OEP = 0x4738C,
         RUNTIME = 0x3D600000,
@@ -64,7 +64,7 @@ private:
     //Need for reconstruct own variables/methods call.
     std::vector<DWORD> m_relocations;
 
-    //Simple (no), functions for fill vectors.
+    //Simple (no), functions for fill data-vectors.
 
     void FillImports ();
     void FillRelocations ();

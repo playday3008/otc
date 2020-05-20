@@ -6,7 +6,7 @@ class RuntimeHandler {
 
 public:
 
-    RuntimeHandler(Segment& segment) : m_Segment (segment) {}
+    RuntimeHandler (Segment& segment) : m_Segment (segment) {}
 
     //Extract segment to memory.
     void ExtractSegment ();

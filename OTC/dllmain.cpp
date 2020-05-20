@@ -10,32 +10,17 @@
  *                           |---------------|
  *                    +++++> |  Relocations  | ======+
  * |---------|        |      |---------------|       |        |-------------------------------------------|         |---------------|       |---------------------------|
- * | Segment | =======+                              -======> | Reconstruct hotpoints with new base addr. | ======> | OWN FUNCTIONS | ====> | Call Original Entry Point |
+ * | Segment | =======+                              -======> | Reconstruct hotpoints with new base addr  | ======> | OWN FUNCTIONS | ====> | Call Original entry point |
  * |---------|        |      |---------------|       |        |-------------------------------------------|         |---------------|       |---------------------------|
  *                    +++++> |    Imports    | ======+
  *                           |---------------|
- *
- *
- *                                  +--------------------------------------------------------------+
- *                                 + ############################################################## +
- *                                + ################################################################ +
- *                               + [+----------------------------------------------------------------+] +
- *                            + # ]|[ #                      Dev - 0x000cb                         # ]|[ # +
- *                            + # ]|[ #       Telegram - t.me/array0 | Discord - 0xb00b1e5#0089    # ]|[ # +
- *                            + # ]|[ #   ------------------------------------------------------   # ]|[ # +
- *                            + # ]|[ #                   Legacy help - HoShiMin                   # ]|[ # +
- *                            + # ]|[ #                  Telegram - t.me/HoShiMin                  # ]|[ # +
- *                               + [+----------------------------------------------------------------+] +
- *                                 + ################################################################ +
- *                                  + ############################################################## +
- *                                   +--------------------------------------------------------------+
  *
  */
 
 //Scary but necessary.
 DWORD Segment::UnsafeAllocatedPointer = 0x0;
 DWORD Segment::UnsafeLibraryPointer = 0x0;
-SegmentFramework::VirtualFunctionCaller SegmentFramework::OriginalVirtualFunctionCaller = 0x0;
+SegmentFramework::oVirtualFunctionCaller SegmentFramework::OriginalVirtualCaller = 0x0;
 
 BOOL APIENTRY DllMain(HMODULE module, DWORD callReason, LPVOID lpReserved) {
 
@@ -57,7 +42,7 @@ BOOL APIENTRY DllMain(HMODULE module, DWORD callReason, LPVOID lpReserved) {
         logger.Info ("                 .71MMRDD99XphXhh2F21f1f1f1212SpZSr");
         logger.Info ("               rPDpXttJjYJYjYjJjjtUft2fF2Ffh2F1hh9E9i");
         logger.Info ("             iEDPfhtJcJJYLY7L777L777L7L7cLJJUJ1fF1P9RP:");
-        logger.Info ("           .PQR0FY:.JPUJLLLc7c7c7L7c7L7L7L777L7LLYcU20M2"); 
+        logger.Info ("           .PQR0FY:.JPUJLLLc7c7c7L7c7L7L7L777L7LLYcU20M2");
         logger.Info ("          YQM7:    71cL7L7c7L7cLcLcLYLcLcLcLcLcLL7L7ccjXM:");
         logger.Info ("         :L.     U017L7cLcLcLYLYLc7YLcLYLcLYcjj2th1F2FfFPQF");
         logger.Info ("               iMXJLLLcLcLc7cLcLcLYLcLYcJjh1hjYri::,:,::irbQ.");
@@ -95,7 +80,7 @@ BOOL APIENTRY DllMain(HMODULE module, DWORD callReason, LPVOID lpReserved) {
         logger.Space ();
         logger.Info ("Fluttershy");
         logger.Info ("Friendship is Magic");
-        
+
         logger.Space ();
 
         logger.Info ("Welcome to OTC Loader.");
@@ -105,11 +90,11 @@ BOOL APIENTRY DllMain(HMODULE module, DWORD callReason, LPVOID lpReserved) {
         logger.Info ("| [~] Extracting segment to memory....");
 
         runtime.ExtractSegment();
-        
+
         logger.Info ("| [~] Reconstructing hot-points...");
 
         runtime.ReconstructHotPoints();
-        
+
         logger.Info ("| [+] Wait until the framework complete routine work...");
         logger.Info ("| [~] Filling the dependency table... (~7-15 sec)");
 
@@ -130,7 +115,7 @@ BOOL APIENTRY DllMain(HMODULE module, DWORD callReason, LPVOID lpReserved) {
         segment.GetFramework().UpdateMenuWatermark ("PonySense ");
 
         logger.Info ("| [~] Invoking OEP...");
-       
+
         //Make segment alive.
         runtime.InvokeOEP();
 
@@ -140,7 +125,7 @@ BOOL APIENTRY DllMain(HMODULE module, DWORD callReason, LPVOID lpReserved) {
         logger.Info ("| [+] OTC initialized.");
 
         logger.Space ();
-       
+
         logger.Info ("+--------+-----------------------------------+");
         logger.Info ("| Loader |                                   |");
         logger.Info ("|--------+                                   |");
@@ -164,8 +149,7 @@ BOOL APIENTRY DllMain(HMODULE module, DWORD callReason, LPVOID lpReserved) {
         logger.Info ("|  About  |                                  |");
         logger.Info ("|---------+                                  |");
         logger.Info ("|                                            |");
-        logger.Info ("| Github repo - www.github.com/0x000cb/otc   |");
-        logger.Info ("| Configs - www.yadi.sk/d/KZNcRdMSheLTfw     |");
+        logger.Info ("| Source code - www.github.com/0x000cb/otc   |");
         logger.Info ("|--------------------------------------------|");
         logger.Info ("| Donate (BTC):                              |");
         logger.Info ("| bc1qjsjmddxegh2a0nys7czn2qztuzq8g6nwk743vg |");
