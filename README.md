@@ -85,7 +85,6 @@
 # 📦 Build
 
    * [**DLL**](https://github.com/0x000cb/otc/releases/download/master/OTC.zip) 
-     * [Output](https://github.com/0x000cb/otc/releases/download/master/Output.zip)
      
 ------------------------------------------------------
 
