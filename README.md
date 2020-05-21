@@ -84,7 +84,7 @@
 
 # 📦 Build
 
-   * [**DLL**](https://github.com/0x000cb/otc/releases/download/master/OTC.zip) 
+   * [**DLL**](https://github.com/0x000cb/otc/releases/download/master/OTC.dll) 
      
 ------------------------------------------------------
 
