@@ -146,7 +146,7 @@ UINT SegmentFramework::CustomVirtualCaller (PVOID vTable, INT index) {
 
     //Last index update you can found on UC. (https://www.unknowncheats.me/forum/counterstrike-global-offensive/310246-updates-megathread.html)
 
-    if (index >= 89) {
+    if (index >= 152) {
 
         index += 2;
 
