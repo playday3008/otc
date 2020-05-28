@@ -88,7 +88,7 @@ DWORD SearchSignature (DWORD baseAddress, DWORD moduleSize, const char* pattern,
 void Utils::FindOffsetsToVec (const char* module, std::vector<const char*> signatures, std::vector<DWORD>& vector, bool isPanic) {
 
     MODULEINFO moduleInfo = GetModuleInfo (module);
-
+        
     std::vector<unsigned char> pattern;
     std::string mask;
 
