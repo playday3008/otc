@@ -71,6 +71,7 @@
  # 💊 Issues
  
   - [ ] Binds. (Key-non-trigger)
+  - [ ] Attachments. (Chams) ([#75](https://github.com/0x000cb/otc/issues/75))
   - [ ] Animations. (Chams) ([#8](https://github.com/0x000cb/otc/issues/8))
   
 -----------------------------------------------------
