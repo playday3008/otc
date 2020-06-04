@@ -101,7 +101,7 @@ protected:
 
     //Used for dependency info table.
     std::vector<const char*> m_libraries = {
-      "client_panorama.dll",
+      "client.dll",
       "vguimatsurface.dll",
       "shaderapidx9.dll",
       "vstdlib.dll"
