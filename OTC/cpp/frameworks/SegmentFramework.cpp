@@ -28,7 +28,7 @@ void SegmentFramework::CreateDependencyTable() {
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     // We scan signatures in real time, and move what we got (offsets) to the table.                                                                             //
     // Offsets are needed so that OneTap internal functions can find functions from outside. (For example, the render of the menu depends on the same offset)    //
-    // p.s Index 0 - it's client_panorama.                                                                                                                       //
+    // p.s Index 0 - it's client dll.                                                                                                                       //
     //                                                                                                                                                           //
        Utils::FindOffsetsToVec (m_libraries.at(0), m_signatures, info, true);                                                                                    //
     //                                                                                                                                                           //
