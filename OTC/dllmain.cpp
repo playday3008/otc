@@ -22,7 +22,7 @@ DWORD Segment::UnsafeAllocatedPointer = 0x0;
 DWORD Segment::UnsafeLibraryPointer = 0x0;
 SegmentFramework::oVirtualFunctionCaller SegmentFramework::OriginalVirtualCaller = 0x0;
 
-BOOL APIENTRY DllMain(HMODULE module, DWORD callReason, LPVOID lpReserved) {
+BOOL APIENTRY DllMain (HMODULE module, DWORD callReason, LPVOID lpReserved) {
 
     //ALL DOCS INSIDE FUNCTIONS, AND HEADERS.
 

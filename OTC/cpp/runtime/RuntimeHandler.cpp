@@ -1,6 +1,6 @@
 #include "../../headers/runtime/RuntimeHandler.h"
 
-void RuntimeHandler::ExtractSegment() {
+void RuntimeHandler::ExtractSegment () {
     //Allocate memory for segment, and set pointer.
     PanicUtils::SetImportant (&Segment::UnsafeAllocatedPointer, reinterpret_cast<DWORD> (VirtualAlloc (NULL, SegmentHeader::Datacase::ALLOCATION, MEM_RESERVE | MEM_COMMIT, PAGE_EXECUTE_READWRITE)));
     //Small check for not nullable pointer. (In 99% of situations this is not necessary. But who knows what is on the player side. :d)
