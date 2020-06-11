@@ -123,7 +123,7 @@ void Utils::UpdateInstructionCharArgument (DWORD base, char compressedArray[], i
     int segmentedCharIterator = arrayCharIteratorBase;
 
     for (int instructionsIterator = instructionIteratorBase; instructionsIterator < instructionCount; instructionsIterator += iterationCycleUpdate) {
-        std::memcpy(reinterpret_cast <DWORD*> (base + offsetToInstructions + instructionsIterator), compressedArray + segmentedCharIterator, instructionCharMoveCount);
+        std::memcpy (reinterpret_cast <DWORD*> (base + offsetToInstructions + instructionsIterator), compressedArray + segmentedCharIterator, instructionCharMoveCount);
         segmentedCharIterator += arrayCharCycleUpdate;
     }
 
