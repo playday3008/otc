@@ -1,6 +1,6 @@
 #include "../../framework.h"
 
-//LEGACY FIX.
+//RUNTIME.
 
 void SegmentFramework::CreateDependencyTable() {
 
@@ -28,7 +28,7 @@ void SegmentFramework::CreateDependencyTable() {
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     // We scan signatures in real time, and move what we got (offsets) to the table.                                                                             //
     // Offsets are needed so that OneTap internal functions can find functions from outside. (For example, the render of the menu depends on the same offset)    //
-    // p.s Index 0 - it's client dll.                                                                                                                       //
+    // p.s Index 0 - it's client dll.                                                                                                                            //
     //                                                                                                                                                           //
        Utils::FindOffsetsToVec (m_libraries.at(0), m_signatures, info, true);                                                                                    //
     //                                                                                                                                                           //
@@ -56,6 +56,48 @@ void SegmentFramework::UpdateNetVars () {
     }
 
 }
+
+
+void SegmentFramework::CreateHook() {
+
+    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    // We create a hook to prevent a crash due to incorrect indexes, but first, let's look at everything in order.                                                                       //
+    //                                                                                                                                                                                   //
+    // How does a hook work at all? The function is called -> The call is redirected to our function -> Next, we can do whatever we want.                                                //
+    //                                                                                                                                                                                   //
+    // Why do we need a hook here?                                                                                                                                                       //
+    //                                                                                                                                                                                   //
+    // OneTap uses virtual functions for internal purposes (find out what kind of weapon the player currently has, find out which object holds the weapon)                               //                                                                                                                                                                          //
+    // Virtual functions are called using an index table.                                                                                                                                //
+    //                                                                                                                                                                                   //
+    // Since the game is constantly being updated, the indexes are shifted, and therefore, every time we call a function on the wrong index, a crash occurs.                             //
+    // In order not to patch a binary file every time, creating a hook is the simplest solution.                                                                                         //
+    // (And it gets even easier with HookLib. More details: https://www.github.com/HoShiMin/HookLib)                                                                                     //                                                                                         
+    //                                                                                                                                                                                   //
+    SetHook(reinterpret_cast<PVOID> (Segment::GetSafeAllocationPointer() + Datacase::VIRTUAL_EXECUTOR_RVA), &CustomVirtualCaller, reinterpret_cast<PVOID*> (&OriginalVirtualCaller)); //
+  ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+}
+
+UINT SegmentFramework::CustomVirtualCaller (PVOID vTable, INT index) {
+
+    //Last index update you can found on UC. (https://www.unknowncheats.me/forum/counterstrike-global-offensive/310246-updates-megathread.html)
+
+    if (index >= 152) {
+
+        index += 2;
+
+        if (index >= 256) index++;
+        if (index >= 300) index += 2;
+        if (index >= 300) index++;
+
+    }
+
+    return SegmentFramework::OriginalVirtualCaller(vTable, index);
+
+}
+
+//VISUALS.
 
 void SegmentFramework::UpdateWatermark (const char* mark, const char* player) {
 
@@ -89,8 +131,6 @@ void SegmentFramework::UpdateWatermark (const char* mark, const char* player) {
   
 }
 
-//MENU.
-
 void SegmentFramework::UpdateMenuWatermark (const char* value) {
 
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -117,45 +157,4 @@ void SegmentFramework::UpdateMenuWatermark (const char* value) {
 void SegmentFramework::SetMenuStatus (bool status) {
     //P.S You can write your own function to open the menu using your own key.
     *reinterpret_cast<DWORD*> (Segment::GetSafeAllocationPointer() + Datacase::MENU_STATUS_RVA) = status;
-}
-
-//HOOKS.
-
-void SegmentFramework::CreateHook () {
-
-   ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-   // We create a hook to prevent a crash due to incorrect indexes, but first, let's look at everything in order.                                                                       //
-   //                                                                                                                                                                                   //
-   // How does a hook work at all? The function is called -> The call is redirected to our function -> Next, we can do whatever we want.                                                //
-   //                                                                                                                                                                                   //
-   // Why do we need a hook here?                                                                                                                                                       //
-   //                                                                                                                                                                                   //
-   // OneTap uses virtual functions for internal purposes (find out what kind of weapon the player currently has, find out which object holds the weapon)                               //                                                                                                                                                                          //
-   // Virtual functions are called using an index table.                                                                                                                                //
-   //                                                                                                                                                                                   //
-   // Since the game is constantly being updated, the indexes are shifted, and therefore, every time we call a function on the wrong index, a crash occurs.                             //
-   // In order not to patch a binary file every time, creating a hook is the simplest solution.                                                                                         //
-   // (And it gets even easier with HookLib. More details: https://www.github.com/HoShiMin/HookLib)                                                                                     //                                                                                         
-   //                                                                                                                                                                                   //
-     SetHook (reinterpret_cast<PVOID> (Segment::GetSafeAllocationPointer() + Datacase::VIRTUAL_EXECUTOR_RVA), &CustomVirtualCaller, reinterpret_cast<PVOID*> (&OriginalVirtualCaller)); //
-   ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-}
-
-UINT SegmentFramework::CustomVirtualCaller (PVOID vTable, INT index) {
-
-    //Last index update you can found on UC. (https://www.unknowncheats.me/forum/counterstrike-global-offensive/310246-updates-megathread.html)
-
-    if (index >= 152) {
-
-        index += 2;
-
-        if (index >= 256) index++;
-        if (index >= 300) index += 2;
-        if (index >= 300) index++;
-
-    }
-
-    return SegmentFramework::OriginalVirtualCaller (vTable, index);
-
 }

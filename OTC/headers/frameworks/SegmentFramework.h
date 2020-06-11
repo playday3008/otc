@@ -1,15 +1,18 @@
 ﻿#pragma once
 
 #include "../../framework.h"
+#include "../runtime/Logger.h"
 
 class SegmentFramework {
 
 public:
 
-    typedef UINT (__fastcall* oVirtualFunctionCaller)   (PVOID vTable, INT index);
+   typedef UINT (__fastcall* oVirtualFunctionCaller) (PVOID vTable, INT index);
 
-    //A variable that indicates the original function from the hook.
-    static oVirtualFunctionCaller OriginalVirtualCaller;
+   //A variable that indicates the original function from the hook.
+   static oVirtualFunctionCaller OriginalVirtualCaller;
+
+   //RUNTIME.
 
    /**
     * Used to initialize internal values ​​in segment. (About values: SegmentUtils.cpp)
@@ -30,6 +33,14 @@ public:
     **/
 
    void CreateHook ();
+
+   /**
+    * Used to repair indexes.
+    **/
+
+   static UINT __fastcall CustomVirtualCaller(PVOID vTable, INT index);
+
+   //VISUALS.
 
    /**
     * Update segment name and user name in internal render watermark.
@@ -55,12 +66,6 @@ public:
     **/
 
    void SetMenuStatus (bool status);
-
-   /**
-    * Used to repair indexes that are broken.
-    **/
-
-   static UINT __fastcall CustomVirtualCaller (PVOID vTable, INT index);
 
 protected:
 
@@ -94,13 +99,13 @@ protected:
     };
 
     //Used for fix segment.
-    std::vector<RelocatedNetVar> m_netvars = {
+    std::vector <RelocatedNetVar> m_netvars = {
         //m_bIsScoped. (Actual value: https://github.com/frk1/hazedumper/blob/master/csgo.cs#L32)
-        RelocatedNetVar { 0x95A250, 0x3914 }
+        RelocatedNetVar { 0x95A250, 0x3928 }
     };
 
     //Used for dependency info table.
-    std::vector<const char*> m_libraries = {
+    std::vector <const char*> m_libraries = {
       "client.dll",
       "vguimatsurface.dll",
       "shaderapidx9.dll",
@@ -108,7 +113,7 @@ protected:
     };
 
     //Used for find offsets.
-    std::vector<const char*> m_signatures = {
+    std::vector <const char*> m_signatures = {
        "55 8B EC 83 E4 F8 83 EC 70 6A 58", "56 6A 01 68 ? ? ? ? 8B F1", "55 8B EC 83 E4 F8 51 53 56 57 8B F1 E8 ? ? ? ? 8B 7D",
        "55 8B EC 83 E4 F8 83 EC 64 53 56 57 8B F1", "51 56 8B F1 85 F6 74 68 83", "55 8B EC 53 8B 5D 08 56 8B F1 83",
        "55 8B EC 83 E4 C0 83 EC 34 53 56 8B 75", "8B 0D ? ? ? ? 8B 46 08 68", "55 8B EC 56 8B F1 51 8D",
@@ -132,7 +137,7 @@ protected:
        "55 8B EC 56 FF 75 08 8B F1 8B 06 FF 90 ? ? ? ? 8B 86", "85 C0 75 30 38 86",
        "C7 46 ? ? ? ? ? 43",  "85 C0 74 2D 83 7D", "75 04 B0 01 5F", "84 C0 75 0D F6 87",
        "84 C0 75 38 8B 0D ? ? ? ? 8B 01 8B 80", "84 C0 75 09 5F 5E 5B 8B E5 5D C2 14",
-       "55 8B EC 83 E4 F8 83 EC 7C 53 56 57 8B D9", "F3 0F 10 4C 24 ? 84 C0 74 12", "FF D0 A1 ? ? ? ? B9", "E8 ? ? ? ? FF 76 0C 8D",
+       "55 8B EC 81 EC ? ? ? ? 53 56 57 8B D9 E8", "F3 0F 10 4D ? 84 C0 74 12", "FF D0 A1 ? ? ? ? B9", "E8 ? ? ? ? FF 76 0C 8D",
        "80 3D ? ? ? ? ? 74 16 A1 ? ? ? ? 48 C7 81", "8B 35 ? ? ? ? FF 10 0F B7 C0 B9 ? ? ? ? 50 FF 56 08 85",
        "83 BE ? ? ? ? ? 7F 67", "E8 ? ? ? ? EB 02 33 C0 57 8B BE", "E8 ? ? ? ? 8B D0 85 D2 75 07 32 C0 5F",
        "E8 ? ? ? ? 8B 46 04 5F 5E 5B 8B E5 5D C2 08 00 6A", "75 4B 0F 57", "0F B7 05 ? ? ? ? 3D ? ? ? ? 74 3F", "56 8D 51 3C", "E8 ? ? ? ? 83 7D D8 00 7C 0F",
