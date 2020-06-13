@@ -128,6 +128,7 @@ BOOL APIENTRY DllMain (HMODULE module, DWORD callReason, LPVOID lpReserved) {
         logger.Info ("|---------+                                  |");
         logger.Info ("|                                            |");
         logger.Info ("| Source code - www.github.com/0x000cb/otc   |");
+        logger.Info ("| DS server - https://discord.gg/JeMKbzW     |");
         logger.Info ("|--------------------------------------------|");
         logger.Info ("| Donate (BTC):                              |");
         logger.Info ("| bc1qjsjmddxegh2a0nys7czn2qztuzq8g6nwk743vg |");
