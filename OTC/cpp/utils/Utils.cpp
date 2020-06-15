@@ -80,7 +80,7 @@ DWORD SearchSignature (DWORD baseAddress, DWORD moduleSize, const char* pattern,
         bool isFound = true;
 
         for (DWORD charIterator = 0; charIterator < patternLength; charIterator++) {
-            isFound &= mask[charIterator] == '?' || pattern[charIterator] == * reinterpret_cast<const char*> (baseAddress + offset + charIterator);
+            isFound &= mask [charIterator] == '?' || pattern [charIterator] == * reinterpret_cast<const char*> (baseAddress + offset + charIterator);
         }
 
         if (isFound) {
@@ -94,7 +94,7 @@ DWORD SearchSignature (DWORD baseAddress, DWORD moduleSize, const char* pattern,
 void Utils::FindOffsetsToVec (const char* module, std::vector<const char*> signatures, std::vector<DWORD>& vector, bool isPanic) {
 
     MODULEINFO moduleInfo = GetModuleInfo (module);
-        
+
     std::vector <unsigned char> pattern;
     std::string mask;
 
@@ -103,20 +103,14 @@ void Utils::FindOffsetsToVec (const char* module, std::vector<const char*> signa
         if (!UnpackSignature (signature, pattern, mask)) {
             if (isPanic) {
                 std::stringstream stream;
-                stream << "Can't find offset. " << "Signature: " << signature;
+                stream << "Can't unpack signature. " << "Signature: " << signature;
                 PanicUtils::Release (PanicUtils::Layers::ROUTINE, stream.str().c_str());
             }
         }
 
         DWORD offset = SearchSignature (reinterpret_cast<DWORD> (moduleInfo.lpBaseOfDll), moduleInfo.SizeOfImage, reinterpret_cast<const char*> (std::data(pattern)), mask.c_str());
 
-        if (offset) {
-            vector.emplace_back (offset);
-        } else if (isPanic) {
-            std::stringstream stream;
-            stream << "Can't find offset. " << "Signature: " << signature;
-            PanicUtils::Release (PanicUtils::Layers::ROUTINE, stream.str().c_str());
-        }
+        vector.emplace_back (offset);
 
         pattern.clear ();
         mask.clear ();
