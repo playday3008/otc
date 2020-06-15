@@ -5,7 +5,7 @@ void RuntimeHandler::ExtractSegment () {
     PanicUtils::SetImportant (&Segment::UnsafeAllocatedPointer, reinterpret_cast<DWORD> (VirtualAlloc (NULL, SegmentHeader::Datacase::ALLOCATION, MEM_RESERVE | MEM_COMMIT, PAGE_EXECUTE_READWRITE)));
     //Small check for not nullable pointer. (In 99% of situations this is not necessary. But who knows what is on the player side. :d)
     //This is also unlikely, but if the player is not guilty of this, it will be useful for debugging.
-    PanicUtils::RequireNonNull (PanicUtils::Layers::INIT, reinterpret_cast<DWORD> (memcpy (reinterpret_cast<PVOID> (Segment::GetSafeAllocationPointer()), g_SegmentData, SegmentHeader::Datacase::SIZE)), "Allocated memory pointer is null");
+    PanicUtils::RequireNonNull (PanicUtils::Layers::INIT, reinterpret_cast<DWORD> (memcpy (reinterpret_cast<PVOID> (Segment::GetSafeAllocationPointer()), SegmentData, SegmentHeader::Datacase::SIZE)), "Allocated memory pointer is null");
 }
 
 void RuntimeHandler::ReconstructHotPoints () {
@@ -14,7 +14,7 @@ void RuntimeHandler::ReconstructHotPoints () {
 
     //Iterate relocations in vector.
     //(Why don't use SafeAllocationPointer? Because it's slow!)
-    for (const auto& relocation : m_Segment.GetHeader().GetRelocations()) {
+    for (const auto& relocation : m_Segment.GetHeader().GetRelocations ()) {
         //Subtract value with old base address in segment from memory.
         *reinterpret_cast<DWORD*> (Segment::UnsafeAllocatedPointer + relocation) -= SegmentHeader::Datacase::RUNTIME;
         //Add new base address in segment to relocations.
@@ -26,7 +26,7 @@ void RuntimeHandler::ReconstructHotPoints () {
     //------IMPORTS
 
     //Iterate value in imports map.
-    for (const auto& importsMap : m_Segment.GetHeader().GetImports()) {
+    for (const auto& importsMap : m_Segment.GetHeader().GetImports ()) {
 
         //Get info about import from value at map.
         for (const auto& importInfo : importsMap.second) {
@@ -78,9 +78,9 @@ void RuntimeHandler::ReconstructHotPoints () {
 
 void RuntimeHandler::InvokeOEP () {
     //Set function address for call.
-    SegmentHeader::OEP_FUNCTION EntryFunctionCallback = reinterpret_cast <SegmentHeader::OEP_FUNCTION> (Segment::GetSafeAllocationPointer() + SegmentHeader::Datacase::OEP);
+    SegmentHeader::DLLMAIN_CALLBACK DllMain = reinterpret_cast <SegmentHeader::DLLMAIN_CALLBACK> (Segment::GetSafeAllocationPointer() + SegmentHeader::Datacase::OEP);
     //Check for non-null OEP address.
-    PanicUtils::RequireNonNull (PanicUtils::Layers::INIT, reinterpret_cast<DWORD> (EntryFunctionCallback), "OEP value is null");
+    PanicUtils::RequireNonNull (PanicUtils::Layers::INIT, reinterpret_cast<DWORD> (DllMain), "OEP value is null");
     //Call "OEP" func with arguments.
-    EntryFunctionCallback (reinterpret_cast<HMODULE> (Segment::GetSafeAllocationPointer()), DLL_PROCESS_ATTACH, NULL);
+    DllMain (reinterpret_cast<HMODULE> (Segment::GetSafeAllocationPointer()), DLL_PROCESS_ATTACH, NULL);
 }

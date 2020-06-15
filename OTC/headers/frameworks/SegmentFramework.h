@@ -76,8 +76,8 @@ protected:
         //Set value.
         int new_value;
     };
-
-    //Small variables.
+    
+    //Just data.
     enum Datacase {
 
         //Unknown offset. Used for create info table.
@@ -106,14 +106,14 @@ protected:
 
     //Used for dependency info table.
     std::vector <const char*> m_libraries = {
-      "client.dll",
-      "vguimatsurface.dll",
-      "shaderapidx9.dll",
-      "vstdlib.dll"
-    };
+       "client.dll",
+       "vguimatsurface.dll",
+       "shaderapidx9.dll",
+       "vstdlib.dll"
+    },
 
     //Used for find offsets.
-    std::vector <const char*> m_signatures = {
+    m_signatures = {
        "55 8B EC 83 E4 F8 83 EC 70 6A 58", "56 6A 01 68 ? ? ? ? 8B F1", "55 8B EC 83 E4 F8 51 53 56 57 8B F1 E8 ? ? ? ? 8B 7D",
        "55 8B EC 83 E4 F8 83 EC 64 53 56 57 8B F1", "51 56 8B F1 85 F6 74 68 83", "55 8B EC 53 8B 5D 08 56 8B F1 83",
        "55 8B EC 83 E4 C0 83 EC 34 53 56 8B 75", "8B 0D ? ? ? ? 8B 46 08 68", "55 8B EC 56 8B F1 51 8D",

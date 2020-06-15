@@ -1,6 +1,8 @@
 #pragma once
 
 #include "../../framework.h"
+//Hotfix for GetVersionExW.
+#pragma warning (disable : 4996)
 
 class Utils {
 
@@ -57,5 +59,23 @@ public:
      **/
 
     static void UpdateInstructionCharArgument (DWORD base, char compressedArray[], int offsetToInstructions, int instructionIteratorBase, int instructionCount, int iterationCycleUpdate, int instructionCharMoveCount, int arrayCharIteratorBase, int arrayCharCycleUpdate);
+
+    /**
+     * Simple check on OS version to meet the minimum requirements.
+     **/
+
+    static bool IsWinXPOrLater ();
+
+    /**
+     * Simple check on OS type to meet the minimum requirements.
+     **/
+
+    static bool IsWinServBuild ();
+
+    /**
+     * Simple check on installed redist to meet the minimum requirements.
+     **/
+
+    static bool IsRedistPackagePresent ();
 
 };
