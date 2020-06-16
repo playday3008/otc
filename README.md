@@ -4,13 +4,17 @@
 
  Hello. This loader loads and initializes onetap crack in the CS:GO.
 
+----------------------------------------------------
+
+ **Have questions? Connect to our Discord server: https://discord.gg/JeMKbzW**
+
 -----------------------------------------------------
 
 # 📎 FAQ
-
+  
   * 🔶 **How clone this repository ?**
      * ``` git clone https://github.com/0x000cb/otc.git  && cd otc && git submodule update --init --recursive ```
-     
+
    -----------
   
   * ⭕ **PROBLEMS**
@@ -69,8 +73,7 @@
 -----------------------------------------------------
 
  # 💊 Issues
- 
-  - [ ] Binds. (Key-non-trigger)
+  
   - [ ] Attachments. (Chams) ([#75](https://github.com/0x000cb/otc/issues/75))
   - [ ] Animations. (Chams) ([#8](https://github.com/0x000cb/otc/issues/8))
   

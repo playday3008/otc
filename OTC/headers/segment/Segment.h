@@ -6,7 +6,7 @@
 #include "../utils/PanicUtils.h"
 
 //Just a global variable that points to a segment.
-extern const unsigned char g_SegmentData[];
+extern const unsigned char SegmentData [];
 
 class Segment {
 
