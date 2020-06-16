@@ -2,7 +2,7 @@
 
 //RUNTIME.
 
-void SegmentFramework::CreateDependencyTable() {
+void SegmentFramework::CreateDependencyTable () {
 
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     // We use this as a temporary storage. (The compiler will replace the vector with an array)                                                                  //
@@ -58,7 +58,7 @@ void SegmentFramework::UpdateNetVars () {
 }
 
 
-void SegmentFramework::CreateHook() {
+void SegmentFramework::CreateHook () {
 
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     // We create a hook to prevent a crash due to incorrect indexes, but first, let's look at everything in order.                                                                       //
@@ -74,8 +74,8 @@ void SegmentFramework::CreateHook() {
     // In order not to patch a binary file every time, creating a hook is the simplest solution.                                                                                         //
     // (And it gets even easier with HookLib. More details: https://www.github.com/HoShiMin/HookLib)                                                                                     //                                                                                         
     //                                                                                                                                                                                   //
-    SetHook(reinterpret_cast<PVOID> (Segment::GetSafeAllocationPointer() + Datacase::VIRTUAL_EXECUTOR_RVA), &CustomVirtualCaller, reinterpret_cast<PVOID*> (&OriginalVirtualCaller)); //
-  ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+      SetHook (reinterpret_cast<PVOID> (Segment::GetSafeAllocationPointer() + Datacase::VIRTUAL_EXECUTOR_RVA), &CustomVirtualCaller, reinterpret_cast<PVOID*> (&OriginalVirtualCaller)); //
+    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 }
 

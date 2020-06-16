@@ -76,8 +76,8 @@ protected:
         //Set value.
         int new_value;
     };
-
-    //Small variables.
+    
+    //Just data.
     enum Datacase {
 
         //Unknown offset. Used for create info table.
@@ -106,14 +106,14 @@ protected:
 
     //Used for dependency info table.
     std::vector <const char*> m_libraries = {
-      "client.dll",
-      "vguimatsurface.dll",
-      "shaderapidx9.dll",
-      "vstdlib.dll"
-    };
+       "client.dll",
+       "vguimatsurface.dll",
+       "shaderapidx9.dll",
+       "vstdlib.dll"
+    },
 
     //Used for find offsets.
-    std::vector <const char*> m_signatures = {
+    m_signatures = {
        "55 8B EC 83 E4 F8 83 EC 70 6A 58", "56 6A 01 68 ? ? ? ? 8B F1", "55 8B EC 83 E4 F8 51 53 56 57 8B F1 E8 ? ? ? ? 8B 7D",
        "55 8B EC 83 E4 F8 83 EC 64 53 56 57 8B F1", "51 56 8B F1 85 F6 74 68 83", "55 8B EC 53 8B 5D 08 56 8B F1 83",
        "55 8B EC 83 E4 C0 83 EC 34 53 56 8B 75", "8B 0D ? ? ? ? 8B 46 08 68", "55 8B EC 56 8B F1 51 8D",
@@ -133,7 +133,7 @@ protected:
        "55 8B EC 83 E4 F8 83 EC 0C 53 8B 5D 08 8B C3", "55 8B EC 83 E4 F8 83 EC 1C 53 56 57 8B F9 F7",
        "F3 0F 10 A6 ? ? ? ? F3 0F 11", "56 8B F1 8B 0D ? ? ? ? 57 8B 01 FF 76 70",
        "55 8B EC 83 EC 10 A1 ? ? ? ? 89 4D", "57 8B F9 8B 07 8B 80 ? ? ? ? FF D0 84 C0 75 02",
-       "55 8B EC 83 E4 F8 83 EC 60 56 57 8B F9 89 7C 24", "55 8B EC 83 E4 F8 83 EC 30 56 57 8B 3D",
+       "55 8B EC 83 E4 F8 83 EC 5C 53 8B D9 56 57 83 7B", "55 8B EC 83 E4 F8 83 EC 30 56 57 8B 3D",
        "55 8B EC 56 FF 75 08 8B F1 8B 06 FF 90 ? ? ? ? 8B 86", "85 C0 75 30 38 86",
        "C7 46 ? ? ? ? ? 43",  "85 C0 74 2D 83 7D", "75 04 B0 01 5F", "84 C0 75 0D F6 87",
        "84 C0 75 38 8B 0D ? ? ? ? 8B 01 8B 80", "84 C0 75 09 5F 5E 5B 8B E5 5D C2 14",

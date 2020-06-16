@@ -81,32 +81,57 @@ BOOL APIENTRY DllMain (HMODULE module, DWORD callReason, LPVOID lpReserved) {
         logger.Info ("Fluttershy");
         logger.Info ("Friendship is Magic");
 
-        logger.Space ();
-
-        logger.Info ("Welcome to OTC Loader.");
 
         logger.Space (2);
 
+        logger.Info ("Welcome to OTC Loader.");
+
+        logger.Space ();
+
+        logger.Info ("| [~] Performing basic checks...");
+
+        //Do not even ask about win server :D
+        if (Utils::IsWinXPOrLater () || Utils::IsWinServBuild ()) {
+           logger.Info ("| [-] I cannot run OTC on the current version of Windows.");
+           logger.Info ("| [~] Please upgrade to 7 or 8, or 10. (PC build)");
+           return FALSE;
+        }
+
+        logger.Info ("| [+] Your windows version meets the requirements for running OTC.");
+
+        //Pretty common issue.
+        if (!Utils::IsRedistPackagePresent ()) {
+            logger.Info ("| [-] Could not find the msvc redist package installed on your system.");
+            logger.Info ("| [~] You can download and install the redist build from here: https://www.microsoft.com/en-us/download/confirmation.aspx?id=52685.");
+            return FALSE;
+        }
+
+        logger.Info ("| [+] Found the required msvc redist build on your system.");
+        logger.Info ("| [+] All checks passed.");
+
+        logger.Space ();
+
         logger.Info ("| [~] Extracting segment to memory....");
 
-        runtime.ExtractSegment();
+        runtime.ExtractSegment ();
 
         logger.Info ("| [~] Reconstructing hot-points...");
 
-        runtime.ReconstructHotPoints();
+        runtime.ReconstructHotPoints ();
 
         logger.Info ("| [+] Wait until the framework complete routine work...");
+
         logger.Info ("| [~] Filling the dependency table... (~7-15 sec)");
 
         segment.GetFramework().CreateDependencyTable ();
 
         logger.Info ("| [~] Updating netvars...");
 
-        segment.GetFramework().UpdateNetVars();
+        segment.GetFramework().UpdateNetVars ();
 
         logger.Info ("| [~] Creating hook for internal function...");
 
-        segment.GetFramework().CreateHook();
+        segment.GetFramework().CreateHook ();
 
         logger.Info ("| [~] Updating watermark...");
 
@@ -117,7 +142,7 @@ BOOL APIENTRY DllMain (HMODULE module, DWORD callReason, LPVOID lpReserved) {
         logger.Info ("| [~] Invoking OEP...");
 
         //Make segment alive.
-        runtime.InvokeOEP();
+        runtime.InvokeOEP ();
 
         //Hide menu for better log look.
         segment.GetFramework().SetMenuStatus (false);
@@ -149,10 +174,8 @@ BOOL APIENTRY DllMain (HMODULE module, DWORD callReason, LPVOID lpReserved) {
         logger.Info ("|  About  |                                  |");
         logger.Info ("|---------+                                  |");
         logger.Info ("|                                            |");
+        logger.Info ("| Discord server - discord.gg/JeMKbzW        |");
         logger.Info ("| Source code - www.github.com/0x000cb/otc   |");
-        logger.Info ("|--------------------------------------------|");
-        logger.Info ("| Donate (BTC):                              |");
-        logger.Info ("| bc1qjsjmddxegh2a0nys7czn2qztuzq8g6nwk743vg |");
         logger.Info ("+--------------------------------------------+");
 
         logger.Space (2);
