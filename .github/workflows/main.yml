@@ -9,8 +9,8 @@ jobs:
           submodules: true
     - name: Get all subsubmodules
       run: git submodule update --init --recursive
-    - name: Setup MSBuild.exe
-      uses: warrenbuckley/Setup-MSBuild@v1
+    - name: Add msbuild to PATH
+      uses: microsoft/setup-msbuild@v1.0.2
     - name: Build HookLib
       working-directory: ./OTC/libs/libs/HookLib/HookLib
       run: msbuild HookLib.vcxproj /p:Platform=Win32 /p:Configuration=Release /p:VisualStudioVersion=16.0
